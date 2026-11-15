@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تقنية رقمية 1-1 | وحدة: العمل عبر الإنترنت</title>
+    
+    <!-- الخطوط العربية الاحترافية من Google Fonts مع خطوط احتياطية -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- مكتبة Tailwind CSS للتصميم المتجاوب والحديث -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- مكتبة FontAwesome 6.4 للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- إعدادات Tailwind المخصصة -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'Tahoma', 'Arial', 'sans-serif'],
+                        tajawal: ['Tajawal', 'Tahoma', 'Arial', 'sans-serif'],
+                    },
+                    colors: {
+                        royal: {
+                            950: '#091124',
+                            900: '#0F172A',
+                            800: '#1E293B',
+                            700: '#334155',
+                        },
+                        gold: {
+                            400: '#FBBF24',
+                            500: '#F59E0B',
+                            600: '#D97706',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-6px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ضبط مقاس الخط الأساسي ليتناسب مع الجوال والآيباد والكمبيوتر */
+        html {
+            font-size: 15px;
+        }
+        @media (min-width: 640px) {
+            html {
+                font-size: 17.5px;
+            }
+        }
+        @media (min-width: 1024px) {
+            html {
+                font-size: 20px;
+            }
+        }
+
+        body {
+            font-family: 'Tajawal', 'Cairo', sans-serif;
+            background-color: #F1F5F9;
+            color: #1E293B;
+            overflow-x: hidden;
+            line-height: 1.65;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        /* تخصيص شريط التمرير */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #E2E8F0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94A3B8;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748B;
+        }
+
+        /* تأثيرات البطاقات التفاعلية */
+        .lesson-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .lesson-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(15, 23, 42, 0.15);
+        }
+
+        /* تأثيرات انتقال التبويبات */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* تأثير ضبابية الخلفية لمحاكي الاجتماعات */
+        .bg-blur-sim {
+            filter: blur(5px);
+            transform: scale(1.05);
+        }
+
+        /* وضع العرض التقديمي (سبورة ذكية 60 بوصة - تكبير إضافي) */
+        html.presentation-html {
+            font-size: 23px !important;
+        }
+        body.presentation-mode .container-main {
+            max-width: 98% !important;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- ==================== الترويسة العلوية (Header) ==================== -->
+    <header class="bg-gradient-to-l from-royal-950 via-royal-900 to-slate-800 text-white shadow-xl border-b-4 border-gold-500 sticky top-0 z-50">
+        <div class="container-main max-w-7xl mx-auto px-3 sm:px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+            
+            <!-- الشعار وعنوان المادة + زر البرقر للجوال -->
+            <div class="flex items-center justify-between w-full md:w-auto gap-3">
+                <div class="flex items-center gap-2.5 sm:gap-3">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 text-royal-950 flex items-center justify-center shadow-lg font-black text-xl sm:text-2xl shrink-0">
+                        <i class="fa-solid fa-cloud"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-gold-500/20 text-gold-400 border border-gold-500/30 text-xs font-bold px-2.5 py-0.5 rounded-full">تقنية رقمية 1-1</span>
+                            <span class="text-slate-300 text-xs hidden sm:inline">الصف الأول الثانوي</span>
+                        </div>
+                        <h1 class="text-base sm:text-xl md:text-2xl font-extrabold tracking-tight text-white mt-0.5">
+                            وحدة: <span class="text-gold-400">العمل عبر الإنترنت</span>
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- زر البرقر (يظهر في الجوال فقط) -->
+                <button onclick="toggleMobileMenu()" id="mobile-menu-btn" aria-label="القائمة الرئيسية" class="md:hidden bg-white/10 hover:bg-white/20 border border-white/20 text-gold-400 w-11 h-11 rounded-xl flex items-center justify-center text-xl transition cursor-pointer shrink-0">
+                    <i id="mobile-menu-icon" class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- معلومات المعلم ومؤشر التقدم (ظاهران دائماً) + أزرار الأدوات (للكمبيوتر والآيباد) -->
+            <div class="flex items-center justify-between md:justify-end w-full md:w-auto gap-2 sm:gap-3 flex-wrap">
+                <!-- بطاقة المعلم (ظاهرة دائماً في جميع الشاشات) -->
+                <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 px-3 py-1.5 rounded-xl">
+                    <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gold-500 text-royal-950 flex items-center justify-center font-bold text-xs sm:text-sm shrink-0">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-[10px] sm:text-xs text-slate-300 leading-none">تصميم وتنفيذ :</p>
+                        <p class="text-xs sm:text-base font-bold text-gold-400 leading-tight mt-0.5">أ. يوسف القرني</p>
+                    </div>
+                </div>
+
+                <!-- مؤشر التقدم العام (ظاهر دائماً في جميع الشاشات) -->
+                <div class="flex flex-col items-end bg-slate-800/80 px-3 py-1.5 sm:py-2 rounded-xl border border-slate-700">
+                    <div class="flex items-center gap-1.5 text-[11px] sm:text-xs text-slate-300 mb-1">
+                        <span>إنجاز الوحدة:</span>
+                        <span id="progress-text" class="font-bold text-emerald-400">20%</span>
+                    </div>
+                    <div class="w-24 sm:w-32 h-2 sm:h-2.5 bg-slate-700 rounded-full overflow-hidden">
+                        <div id="progress-bar" class="h-full bg-gradient-to-l from-emerald-400 to-teal-500 transition-all duration-500" style="width: 20%"></div>
+                    </div>
+                </div>
+
+                <!-- أزرار سطح المكتب والآيباد (مخفية في الجوال وموجودة داخل زر البرقر) -->
+                <div class="hidden md:flex items-center gap-2.5 flex-wrap">
+                    <!-- زر Vanta Voids -->
+                    <a href="https://yh-addict.github.io/vanta-voids/" target="_blank" rel="noopener noreferrer" class="bg-slate-800 hover:bg-slate-700 text-gold-400 border border-gold-500/40 font-extrabold px-3.5 py-2.5 rounded-xl shadow-md transition flex items-center gap-2 text-sm cursor-pointer">
+                        <i class="fa-solid fa-rocket"></i>
+                        <span>Vanta Voids</span>
+                    </a>
+
+                    <!-- زر المصادر الاضافية بجوار تكبير الشاشة -->
+                    <a href="https://asrboys-my.sharepoint.com/:f:/g/personal/t991861_asrb_moe_gov_sa/IgBOgJPz5ej0RqchaRfssJMUAToG-BHNliSGQWjEG8XD7nI?e=jWRjOR" target="_blank" rel="noopener noreferrer" class="bg-sky-600 hover:bg-sky-500 text-white font-extrabold px-3.5 py-2.5 rounded-xl shadow-md transition flex items-center gap-2 text-sm cursor-pointer">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span>المصادر الاضافية</span>
+                    </a>
+
+                    <!-- زر الوضع التقديمي / ملء الشاشة -->
+                    <button onclick="togglePresentationMode()" id="btn-fullscreen" title="تكبير إضافي للعرض على شاشة 60 بوصة" class="bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold px-4 py-2.5 rounded-xl shadow-md transition flex items-center gap-2 text-sm cursor-pointer">
+                        <i class="fa-solid fa-expand"></i>
+                        <span>تكبير الشاشة</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- القائمة المنسدلة للجوال (تفتح عند الضغط على زر البرقر) -->
+        <div id="mobile-drawer" class="hidden md:hidden bg-royal-950 border-t border-white/15 px-4 py-4 space-y-4 shadow-2xl max-h-[80vh] overflow-y-auto">
+            <div>
+                <p class="text-xs font-bold text-slate-400 mb-2">التنقل بين دروس الوحدة:</p>
+                <div class="grid grid-cols-1 gap-2">
+                    <button onclick="switchLesson(1); closeMobileMenu();" id="mob-nav-btn-1" class="mob-nav-pill flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm transition cursor-pointer bg-sky-600 text-white shadow">
+                        <span class="w-6 h-6 rounded-lg bg-white/20 flex items-center justify-center text-xs">1</span>
+                        <span>المستندات عبر الإنترنت</span>
+                    </button>
+                    <button onclick="switchLesson(2); closeMobileMenu();" id="mob-nav-btn-2" class="mob-nav-pill flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm transition cursor-pointer bg-white/5 text-slate-200 hover:bg-white/10">
+                        <span class="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center text-xs">2</span>
+                        <span>الاجتماعات عبر الإنترنت</span>
+                    </button>
+                    <button onclick="switchLesson(3); closeMobileMenu();" id="mob-nav-btn-3" class="mob-nav-pill flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm transition cursor-pointer bg-white/5 text-slate-200 hover:bg-white/10">
+                        <span class="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center text-xs">3</span>
+                        <span>بث العرض التقديمي</span>
+                    </button>
+                    <button onclick="switchLesson(4); closeMobileMenu();" id="mob-nav-btn-4" class="mob-nav-pill flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm transition cursor-pointer bg-white/5 text-slate-200 hover:bg-white/10">
+                        <span class="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center text-xs">4</span>
+                        <span>إدارة الملاحظات</span>
+                    </button>
+                    <button onclick="switchLesson(5); closeMobileMenu();" id="mob-nav-btn-5" class="mob-nav-pill flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm transition cursor-pointer bg-white/5 text-slate-200 hover:bg-white/10">
+                        <span class="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center text-xs">5</span>
+                        <span>الخرائط الذهنية</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-3 space-y-2.5">
+                <p class="text-xs font-bold text-slate-400">روابط وأدوات إضافية:</p>
+                <a href="https://asrboys-my.sharepoint.com/:f:/g/personal/t991861_asrb_moe_gov_sa/IgBOgJPz5ej0RqchaRfssJMUAToG-BHNliSGQWjEG8XD7nI?e=jWRjOR" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-extrabold px-4 py-3 rounded-xl shadow flex items-center justify-center gap-2 text-sm">
+                    <i class="fa-solid fa-folder-open"></i>
+                    <span>المصادر الاضافية</span>
+                </a>
+                <a href="https://yh-addict.github.io/vanta-voids/" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()" class="w-full bg-slate-800 hover:bg-slate-700 text-gold-400 border border-gold-500/40 font-extrabold px-4 py-3 rounded-xl shadow flex items-center justify-center gap-2 text-sm">
+                    <i class="fa-solid fa-rocket"></i>
+                    <span>Vanta Voids</span>
+                </a>
+                <button onclick="togglePresentationMode(); closeMobileMenu();" class="w-full bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold px-4 py-3 rounded-xl shadow flex items-center justify-center gap-2 text-sm cursor-pointer">
+                    <i class="fa-solid fa-expand"></i>
+                    <span>تكبير الشاشة</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- شريط التنقل بين الدروس الخمسة (يظهر في الآيباد والكمبيوتر فقط) -->
+        <nav class="hidden md:block bg-royal-950/90 border-t border-white/10 overflow-x-auto">
+            <div class="container-main max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between gap-2 min-w-max">
+                <button onclick="switchLesson(1)" id="nav-btn-1" class="nav-pill active flex items-center gap-2.5 px-4 py-2.5 rounded-xl font-bold text-base transition cursor-pointer bg-sky-600 text-white shadow-lg shadow-sky-600/30">
+                    <span class="w-7 h-7 rounded-lg bg-white/20 flex items-center justify-center text-sm">1</span>
+                    <span>المستندات عبر الإنترنت</span>
+                </button>
+                <button onclick="switchLesson(2)" id="nav-btn-2" class="nav-pill flex items-center gap-2.5 px-4 py-2.5 rounded-xl font-bold text-base transition cursor-pointer text-slate-300 hover:bg-white/10">
+                    <span class="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center text-sm">2</span>
+                    <span>الاجتماعات عبر الإنترنت</span>
+                </button>
+                <button onclick="switchLesson(3)" id="nav-btn-3" class="nav-pill flex items-center gap-2.5 px-4 py-2.5 rounded-xl font-bold text-base transition cursor-pointer text-slate-300 hover:bg-white/10">
+                    <span class="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center text-sm">3</span>
+                    <span>بث العرض التقديمي</span>
+                </button>
+                <button onclick="switchLesson(4)" id="nav-btn-4" class="nav-pill flex items-center gap-2.5 px-4 py-2.5 rounded-xl font-bold text-base transition cursor-pointer text-slate-300 hover:bg-white/10">
+                    <span class="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center text-sm">4</span>
+                    <span>إدارة الملاحظات</span>
+                </button>
+                <button onclick="switchLesson(5)" id="nav-btn-5" class="nav-pill flex items-center gap-2.5 px-4 py-2.5 rounded-xl font-bold text-base transition cursor-pointer text-slate-300 hover:bg-white/10">
+                    <span class="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center text-sm">5</span>
+                    <span>الخرائط الذهنية</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ==================== المحتوى الرئيسي (Main Container) ==================== -->
+    <main class="container-main max-w-7xl mx-auto px-3 sm:px-4 py-6 flex-grow w-full">
+
+        <!-- ===================================================================== -->
+        <!-- الدرس الأول: العمل مع المستندات عبر الإنترنت (ثيم أزرق/سماوي)         -->
+        <!-- ===================================================================== -->
+        <section id="lesson-1" class="tab-content active space-y-6">
+            <!-- بطاقة الترويسة والاستراتيجية التربوية -->
+            <div class="bg-gradient-to-l from-sky-700 via-blue-600 to-cyan-700 rounded-3xl p-5 sm:p-6 text-white shadow-xl relative overflow-hidden">
+                <div class="absolute -left-8 -bottom-8 text-white/10 text-9xl pointer-events-none">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+                <div class="relative z-10">
+                    <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold mb-2">
+                        <i class="fa-solid fa-users-gear text-gold-400"></i>
+                        الاستراتيجية التربوية: التعلم التعاوني السحابي والمحاكاة التزامنية
+                    </span>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl font-black">الدرس الأول: العمل مع المستندات عبر الإنترنت (Online Documents)</h2>
+                    <p class="text-sky-100 mt-1 text-sm sm:text-base max-w-3xl">اكتشف كيف تتيح تطبيقات التخزين السحابي إنشاء المستندات وتحريرها ومشاركتها والعمل عليها تزامنياً من أي مكان وفي أي وقت.</p>
+                </div>
+            </div>
+
+            <!-- المقارنة التفاعلية بين Microsoft OneDrive و Google Drive -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Microsoft OneDrive -->
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border-t-4 border-blue-600 lesson-card flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl">
+                                    <i class="fa-brands fa-microsoft"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-extrabold text-slate-800">مايكروسوفت ون درايف</h3>
+                                    <span class="text-xs font-bold text-blue-600" dir="ltr">Microsoft OneDrive</span>
+                                </div>
+                            </div>
+                            <span class="bg-blue-50 text-blue-700 border border-blue-200 text-xs font-bold px-3 py-1 rounded-full">سحابة مايكروسوفت</span>
+                        </div>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                            خدمة تخزين سحابي تابعة لشركة مايكروسوفت، تتيح حفظ الملفات والوصول إليها من أي جهاز متصل بالإنترنت، وتحرير مستندات الأوفيس مباشرة عبر المتصفح بواجهة مطابقة للتطبيقات المكتبية.
+                        </p>
+                        <div class="space-y-2 text-xs">
+                            <div class="bg-blue-50/70 border border-blue-100 p-3 rounded-xl flex items-center gap-2.5 text-slate-700">
+                                <i class="fa-solid fa-browser text-blue-600 text-base"></i>
+                                <span><strong>التحرير عبر المتصفح:</strong> تعديل ملفات Word و Excel و PowerPoint دون الحاجة لتثبيتها.</span>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl flex items-center gap-2.5 text-slate-700">
+                                <i class="fa-solid fa-download text-emerald-600 text-base"></i>
+                                <span><strong>العمل دون اتصال (Offline):</strong> إمكانية تحميل نسخة محلية للعمل عليها ثم مزامنتها لاحقاً.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Drive & Google Workspace -->
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border-t-4 border-sky-500 lesson-card flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center text-2xl">
+                                    <i class="fa-brands fa-google-drive"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-extrabold text-slate-800">جوجل درايف وحزمة التطبيقات</h3>
+                                    <span class="text-xs font-bold text-sky-600" dir="ltr">Google Drive & Workspace</span>
+                                </div>
+                            </div>
+                            <span class="bg-sky-50 text-sky-700 border border-sky-200 text-xs font-bold px-3 py-1 rounded-full">حساب Gmail</span>
+                        </div>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                            خدمة تخزين سحابي مجانية من جوجل ترتبط بحساب البريد الإلكتروني <code class="bg-slate-100 px-1.5 py-0.5 rounded font-bold text-slate-800" dir="ltr">Gmail</code>، وتوفر حزمة مكتبية سحابية متكاملة للإنشاء والتعاون الفوري:
+                        </p>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center text-xs">
+                            <div class="bg-blue-50 border border-blue-200 p-2.5 rounded-xl">
+                                <i class="fa-solid fa-file-lines text-blue-600 text-xl mb-1"></i>
+                                <div class="font-extrabold text-blue-950">Google Docs</div>
+                                <div class="text-[11px] text-slate-600">معالج المستندات</div>
+                            </div>
+                            <div class="bg-emerald-50 border border-emerald-200 p-2.5 rounded-xl">
+                                <i class="fa-solid fa-table text-emerald-600 text-xl mb-1"></i>
+                                <div class="font-extrabold text-emerald-950">Google Sheets</div>
+                                <div class="text-[11px] text-slate-600">جداول البيانات</div>
+                            </div>
+                            <div class="bg-amber-50 border border-amber-200 p-2.5 rounded-xl">
+                                <i class="fa-solid fa-display text-amber-600 text-xl mb-1"></i>
+                                <div class="font-extrabold text-amber-950">Google Slides</div>
+                                <div class="text-[11px] text-slate-600">العروض التقديمية</div>
+                            </div>
+                            <div class="bg-purple-50 border border-purple-200 p-2.5 rounded-xl">
+                                <i class="fa-solid fa-square-poll-vertical text-purple-600 text-xl mb-1"></i>
+                                <div class="font-extrabold text-purple-950">Google Forms</div>
+                                <div class="text-[11px] text-slate-600">النماذج والاستبانات</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- محاكي العمل التزامني المشترك وصلاحيات المشاركة -->
+            <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-5 border-b border-slate-100 pb-4">
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-extrabold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-people-arrows text-sky-600"></i>
+                            <span>محاكي العمل التزامني (Real-time Collaboration) وصلاحيات المشاركة</span>
+                        </h3>
+                        <p class="text-xs text-slate-500 mt-1">غيّر صلاحية رابط المشاركة أو وضع الاتصال وجرّب الكتابة في المستند السحابي المشترك:</p>
+                    </div>
+
+                    <!-- أدوات التحكم في المحاكي -->
+                    <div class="flex flex-wrap items-center gap-2.5">
+                        <!-- اختيار الصلاحية -->
+                        <div class="flex items-center gap-1.5 bg-slate-100 p-1.5 rounded-xl border border-slate-200 text-xs">
+                            <span class="font-bold text-slate-600 px-1.5">الصلاحية:</span>
+                            <button onclick="setDocPermission('view')" id="perm-btn-view" class="px-2.5 py-1.5 rounded-lg font-bold transition cursor-pointer text-slate-700 hover:bg-white">عرض فقط</button>
+                            <button onclick="setDocPermission('comment')" id="perm-btn-comment" class="px-2.5 py-1.5 rounded-lg font-bold transition cursor-pointer text-slate-700 hover:bg-white">تعليق</button>
+                            <button onclick="setDocPermission('edit')" id="perm-btn-edit" class="px-2.5 py-1.5 rounded-lg font-bold transition cursor-pointer bg-sky-600 text-white shadow">تحرير</button>
+                        </div>
+
+                        <!-- تبديل وضع الاتصال -->
+                        <button onclick="toggleDocConnection()" id="doc-conn-btn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3.5 py-2 rounded-xl text-xs shadow transition flex items-center gap-1.5 cursor-pointer">
+                            <i class="fa-solid fa-wifi"></i>
+                            <span>متصل بالسحابة (Online)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- واجهة محرر المستند السحابي التفاعلي -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+                    <div class="lg:col-span-8 bg-slate-50 border-2 border-slate-200 rounded-2xl overflow-hidden">
+                        <!-- شريط عنوان المستند -->
+                        <div class="bg-slate-800 text-white px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-file-word text-sky-400 text-base"></i>
+                                <span class="font-bold">تقرير_مشروع_التقنية_الرقمية.docx</span>
+                            </div>
+                            <!-- المتعاونون المتصلون حالياً -->
+                            <div class="flex items-center gap-2">
+                                <span class="text-slate-300">المتعاونون الآن:</span>
+                                <span class="bg-emerald-500/20 border border-emerald-400 text-emerald-300 px-2 py-0.5 rounded-full font-bold flex items-center gap-1">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> أحمد (يحرر)
+                                </span>
+                                <span class="bg-amber-500/20 border border-amber-400 text-amber-300 px-2 py-0.5 rounded-full font-bold">سارة (تشاهد)</span>
+                            </div>
+                        </div>
+
+                        <!-- مساحة التحرير -->
+                        <div class="p-4 space-y-3">
+                            <div id="doc-perm-banner" class="bg-sky-50 border border-sky-200 text-sky-900 px-3 py-2 rounded-xl text-xs font-bold flex items-center justify-between">
+                                <span><i class="fa-solid fa-pen-to-square text-sky-600 ml-1"></i> صلاحية (تحرير): يمكنك تعديل النص مباشرة وتظهر التغييرات لجميع الفريق فوراً.</span>
+                                <button onclick="simulatePeerEdit()" class="bg-sky-600 hover:bg-sky-700 text-white px-2.5 py-1 rounded-lg text-[11px] cursor-pointer shrink-0">محاكاة إضافة زميل</button>
+                            </div>
+
+                            <textarea id="collab-doc-editor" rows="4" class="w-full p-3.5 rounded-xl border border-slate-300 bg-white text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 leading-relaxed">مرحباً بفريق العمل! نعمل الآن معاً في نفس اللحظة على إعداد ملخص وحدة العمل عبر الإنترنت باستخدام التخزين السحابي...</textarea>
+
+                            <div id="doc-comment-box" class="hidden flex gap-2">
+                                <input type="text" id="doc-comment-input" placeholder="اكتب تعليقاً أو اقتراحاً للفريق..." class="w-full px-3 py-2 rounded-xl border border-amber-300 text-xs">
+                                <button onclick="addDocComment()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-3.5 py-2 rounded-xl text-xs cursor-pointer shrink-0">إضافة تعليق</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- لوحة سجل المزامنة والرابط -->
+                    <div class="lg:col-span-4 bg-slate-900 text-white rounded-2xl p-4 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h4 class="font-extrabold text-gold-400 text-sm flex items-center gap-2 mb-2">
+                                <i class="fa-solid fa-link"></i>
+                                <span>رابط المشاركة السحابي</span>
+                            </h4>
+                            <div class="bg-slate-800 border border-slate-700 p-2.5 rounded-xl flex items-center justify-between gap-2 text-xs font-mono" dir="ltr">
+                                <span id="share-link-text" class="truncate text-sky-300">https://cloud.edu.sa/doc/edit?id=101</span>
+                                <button onclick="copyShareLink()" class="bg-sky-600 hover:bg-sky-500 text-white px-2.5 py-1 rounded-lg font-sans font-bold text-[11px] cursor-pointer shrink-0">نسخ</button>
+                            </div>
+                            <p id="copy-link-feedback" class="text-[11px] text-emerald-400 mt-1.5 hidden"><i class="fa-solid fa-check ml-1"></i> تم نسخ رابط المشاركة بنجاح!</p>
+                        </div>
+
+                        <div>
+                            <h5 class="text-xs font-bold text-slate-300 mb-2">سجل النشاط والمزامنة الفورية:</h5>
+                            <div id="doc-activity-log" class="bg-slate-950/70 rounded-xl p-3 text-[11px] space-y-1.5 max-h-32 overflow-y-auto text-slate-300">
+                                <div class="text-emerald-400"><i class="fa-solid fa-cloud-check ml-1"></i> جميع التغييرات محفوظة تلقائياً في السحابة.</div>
+                                <div><i class="fa-solid fa-user-check text-sky-400 ml-1"></i> انضم (أحمد) إلى المستند عبر رابط المشاركة.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- زر اختبار فهم الدرس في نهاية الدرس -->
+            <div class="bg-gradient-to-l from-sky-900 to-blue-950 rounded-3xl p-6 text-white shadow-xl border-2 border-gold-500/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="text-center sm:text-right">
+                    <h3 class="text-lg sm:text-xl font-black text-gold-400">هل أتممت استكشاف الدرس الأول؟</h3>
+                    <p class="text-xs sm:text-sm text-sky-100 mt-1">قيّم مدى استيعابك لمفاهيم التخزين السحابي والعمل التزامني على المستندات الآن.</p>
+                </div>
+                <button onclick="openQuizModal(1)" class="bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition transform hover:scale-105 flex items-center gap-2.5 cursor-pointer shrink-0">
+                    <i class="fa-solid fa-award text-xl"></i>
+                    <span>اختبار فهم الدرس</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- الدرس الثاني: الاجتماعات عبر الإنترنت (ثيم نيلي/بنفسجي)                -->
+        <!-- ===================================================================== -->
+        <section id="lesson-2" class="tab-content space-y-6">
+            <!-- ترويسة الدرس الثاني -->
+            <div class="bg-gradient-to-l from-indigo-700 via-violet-700 to-purple-800 rounded-3xl p-5 sm:p-6 text-white shadow-xl relative overflow-hidden">
+                <div class="absolute -left-8 -bottom-8 text-white/10 text-9xl pointer-events-none">
+                    <i class="fa-solid fa-video"></i>
+                </div>
+                <div class="relative z-10">
+                    <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold mb-2">
+                        <i class="fa-solid fa-headset text-gold-400"></i>
+                        الاستراتيجية التربوية: المحاكاة الافتراضية والمقارنة التحليلية
+                    </span>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl font-black">الدرس الثاني: الاجتماعات عبر الإنترنت (Online Meetings)</h2>
+                    <p class="text-indigo-100 mt-1 text-sm sm:text-base max-w-3xl">اتصال مرئي وصوتي يجمع الأفراد عبر غرف افتراضية باستخدام الإنترنت؛ قارن بين أبرز المنصات وجرّب أدوات الاجتماع التفاعلية.</p>
+                </div>
+            </div>
+
+            <!-- بطاقات المقارنة التفاعلية بين المنصات الثلاث -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <!-- Microsoft Teams -->
+                <div class="bg-white rounded-2xl p-5 shadow-md border-t-4 border-indigo-600 lesson-card flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-extrabold text-slate-800 text-lg" dir="ltr">Microsoft Teams</h3>
+                            <span class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-users-rectangle"></i>
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                            منصة متكاملة من مايكروسوفت لعقد الاجتماعات، الدردشة، ومشاركة الملفات، وترتبط مباشرة بتقويم ويندوز.
+                        </p>
+                        <ul class="space-y-2 text-xs text-slate-700">
+                            <li class="bg-indigo-50 p-2 rounded-lg"><i class="fa-solid fa-calendar-check text-indigo-600 ml-1"></i> <strong>الجدولة:</strong> جدولة الاجتماعات عبر تقويم ويندوز.</li>
+                            <li class="bg-indigo-50 p-2 rounded-lg"><i class="fa-solid fa-wand-sparkles text-indigo-600 ml-1"></i> <strong>الخلفيات:</strong> دعم ضبابية الخلفية (<code dir="ltr">Blur</code>) أو استبدالها.</li>
+                            <li class="bg-indigo-50 p-2 rounded-lg"><i class="fa-solid fa-hand text-indigo-600 ml-1"></i> <strong>التفاعل:</strong> مشاركة الشاشة ورفع اليد (<code dir="ltr">Raise Hand</code>).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Cisco WebEx -->
+                <div class="bg-white rounded-2xl p-5 shadow-md border-t-4 border-violet-600 lesson-card flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-extrabold text-slate-800 text-lg" dir="ltr">Cisco WebEx</h3>
+                            <span class="w-10 h-10 rounded-xl bg-violet-100 text-violet-700 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-globe"></i>
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                            برنامج احترافي لعقد مؤتمرات الفيديو والندوات الرقمية ومشاركة الشاشة والتطبيقات عن بُعد.
+                        </p>
+                        <ul class="space-y-2 text-xs text-slate-700">
+                            <li class="bg-violet-50 p-2 rounded-lg"><i class="fa-solid fa-user-slash text-violet-600 ml-1"></i> <strong>الحساب المسبق:</strong> لا يلزم الحضور امتلاك حساب إلا إذا ألزم المضيف ذلك.</li>
+                            <li class="bg-violet-50 p-2 rounded-lg"><i class="fa-solid fa-chalkboard text-violet-600 ml-1"></i> <strong>الندوات:</strong> مثالي للمؤتمرات والندوات التعليمية والتدريبية.</li>
+                            <li class="bg-violet-50 p-2 rounded-lg"><i class="fa-solid fa-share-from-square text-violet-600 ml-1"></i> <strong>المشاركة:</strong> مشاركة الشاشة أو ملفات محددة بمرونة.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Zoom -->
+                <div class="bg-white rounded-2xl p-5 shadow-md border-t-4 border-blue-500 lesson-card flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-extrabold text-slate-800 text-lg" dir="ltr">Zoom</h3>
+                            <span class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-lg">
+                                <i class="fa-solid fa-video"></i>
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                            نظام مؤتمرات صوتية ومرئية واسع الانتشار يتميز بسهولة الانضمام السريع وتقسيم المجموعات.
+                        </p>
+                        <ul class="space-y-2 text-xs text-slate-700">
+                            <li class="bg-blue-50 p-2 rounded-lg"><i class="fa-solid fa-door-open text-blue-600 ml-1"></i> <strong>تقسيم الغرف:</strong> ميزة الغرف الجانبية (<code dir="ltr">Breakout Rooms</code>).</li>
+                            <li class="bg-blue-50 p-2 rounded-lg"><i class="fa-solid fa-face-smile text-blue-600 ml-1"></i> <strong>التفاعل:</strong> التفاعل بالرموز التعبيرية ورفع اليد.</li>
+                            <li class="bg-amber-50 border border-amber-200 p-2 rounded-lg"><i class="fa-solid fa-clock text-amber-600 ml-1"></i> <strong>المدة المجانية:</strong> فترته المجانية للاجتماعات الجماعية محدودة المدة (40 دقيقة).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- محاكي غرفة اجتماع افتراضية تفاعلية -->
+            <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200">
+                <div class="mb-4">
+                    <h3 class="text-lg sm:text-xl font-extrabold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-display text-indigo-600"></i>
+                        <span>محاكي غرفة الاجتماع الافتراضية التفاعلي</span>
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-1">جرّب أزرار التحكم أسفل شاشة الاجتماع لاختبار وظائف الاجتماعات عبر الإنترنت:</p>
+                </div>
+
+                <div class="bg-slate-950 rounded-3xl p-4 sm:p-6 text-white shadow-inner border border-slate-800">
+                    <!-- شريط علوي للغرفة -->
+                    <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-slate-800 text-xs">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse"></span>
+                            <span class="font-bold text-slate-200">غرفة اجتماع: فريق التقنية الرقمية 1-1</span>
+                        </div>
+                        <div id="meeting-room-badge" class="bg-indigo-600/30 border border-indigo-400/40 text-indigo-200 px-3 py-1 rounded-full font-bold">
+                            الغرفة الرئيسية (4 مشاركين)
+                        </div>
+                    </div>
+
+                    <!-- شبكة المشاركين أو مشاركة الشاشة -->
+                    <div id="meeting-stage" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
+                        <!-- بطاقة الطالب (أنت) -->
+                        <div class="relative rounded-2xl overflow-hidden border-2 border-indigo-500 bg-slate-900 h-40 flex flex-col items-center justify-center p-3">
+                            <!-- خلفية افتراضية قابلة للتضبيب -->
+                            <div id="user-cam-bg" class="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 transition-all duration-300"></div>
+                            
+                            <!-- أيقونة رفع اليد -->
+                            <div id="user-hand-badge" class="hidden absolute top-2.5 right-2.5 bg-gold-500 text-slate-950 px-2.5 py-1 rounded-full text-xs font-black shadow-lg animate-bounce z-10">
+                                <i class="fa-solid fa-hand ml-1"></i> يطلب التحدث
+                            </div>
+
+                            <div id="user-cam-avatar" class="relative z-10 w-16 h-16 rounded-full bg-indigo-600 border-2 border-white flex items-center justify-center text-2xl font-black shadow-lg">
+                                <i class="fa-solid fa-user-graduate"></i>
+                            </div>
+                            <div class="relative z-10 mt-2 text-xs font-bold bg-slate-950/70 px-2.5 py-1 rounded-lg flex items-center gap-1.5">
+                                <i id="user-mic-icon" class="fa-solid fa-microphone-slash text-rose-400"></i>
+                                <span>أنت (المشارك)</span>
+                            </div>
+                        </div>
+
+                        <!-- المعلم / المضيف -->
+                        <div class="rounded-2xl border border-slate-700 bg-slate-900/90 h-40 flex flex-col items-center justify-center p-3">
+                            <div class="w-14 h-14 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-chalkboard-user"></i>
+                            </div>
+                            <div class="mt-2 text-xs font-bold text-slate-200 flex items-center gap-1.5">
+                                <i class="fa-solid fa-microphone text-emerald-400"></i>
+                                <span>المضيف (المنسق)</span>
+                            </div>
+                        </div>
+
+                        <!-- مشارك 3 -->
+                        <div class="rounded-2xl border border-slate-700 bg-slate-900/90 h-40 flex flex-col items-center justify-center p-3">
+                            <div class="w-14 h-14 rounded-full bg-sky-600 text-white flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="mt-2 text-xs font-bold text-slate-200 flex items-center gap-1.5">
+                                <i class="fa-solid fa-microphone-slash text-slate-500"></i>
+                                <span>خالد (عضو الفريق)</span>
+                            </div>
+                        </div>
+
+                        <!-- مشارك 4 -->
+                        <div class="rounded-2xl border border-slate-700 bg-slate-900/90 h-40 flex flex-col items-center justify-center p-3">
+                            <div class="w-14 h-14 rounded-full bg-amber-600 text-white flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="mt-2 text-xs font-bold text-slate-200 flex items-center gap-1.5">
+                                <i class="fa-solid fa-microphone-slash text-slate-500"></i>
+                                <span>نورة (عضو الفريق)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- لوحة مشاركة الشاشة (تظهر عند تفعيل مشاركة الشاشة) -->
+                    <div id="meeting-screenshare-view" class="hidden mb-5 bg-indigo-950/70 border-2 border-emerald-400 rounded-2xl p-4 text-center">
+                        <div class="text-emerald-400 font-extrabold text-sm mb-1">
+                            <i class="fa-solid fa-display ml-1"></i> أنت تشارك شاشتك الآن مع جميع الحضور
+                        </div>
+                        <p class="text-xs text-slate-300">يرى جميع المشاركين في الغرفة محتوى نافذتك بشكل مباشر وفوري.</p>
+                    </div>
+
+                    <!-- شريط أدوات التحكم في الاجتماع -->
+                    <div class="flex flex-wrap items-center justify-center gap-2.5 bg-slate-900 p-3 rounded-2xl border border-slate-800">
+                        <button onclick="toggleMeetingMic()" id="btn-meet-mic" class="px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 bg-rose-600 hover:bg-rose-500 text-white transition cursor-pointer">
+                            <i class="fa-solid fa-microphone-slash"></i>
+                            <span>تشغيل الميكروفون</span>
+                        </button>
+                        <button onclick="toggleMeetingCam()" id="btn-meet-cam" class="px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white transition cursor-pointer">
+                            <i class="fa-solid fa-video-slash"></i>
+                            <span>تشغيل الكاميرا</span>
+                        </button>
+                        <button onclick="toggleMeetingBlur()" id="btn-meet-blur" class="px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white transition cursor-pointer">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <span>ضبابية الخلفية (Blur)</span>
+                        </button>
+                        <button onclick="toggleMeetingShare()" id="btn-meet-share" class="px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white transition cursor-pointer">
+                            <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                            <span>مشاركة الشاشة</span>
+                        </button>
+                        <button onclick="toggleMeetingHand()" id="btn-meet-hand" class="px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white transition cursor-pointer">
+                            <i class="fa-solid fa-hand"></i>
+                            <span>رفع اليد</span>
+                        </button>
+                        <button onclick="toggleBreakoutRoom()" id="btn-meet-breakout" class="px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white transition cursor-pointer">
+                            <i class="fa-solid fa-door-open"></i>
+                            <span>غرفة جانبية (Breakout)</span>
+                        </button>
+                    </div>
+                    <div id="meeting-status-bar" class="mt-3 text-center text-xs font-bold text-indigo-300">
+                        نصيحة: جرّب الضغط على أي زر في شريط التحكم لمعاينة تأثيره داخل الاجتماع!
+                    </div>
+                </div>
+            </div>
+
+            <!-- زر اختبار فهم الدرس في نهاية الدرس -->
+            <div class="bg-gradient-to-l from-indigo-900 to-purple-950 rounded-3xl p-6 text-white shadow-xl border-2 border-gold-500/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="text-center sm:text-right">
+                    <h3 class="text-lg sm:text-xl font-black text-gold-400">هل أتممت استكشاف الدرس الثاني؟</h3>
+                    <p class="text-xs sm:text-sm text-indigo-100 mt-1">قيّم مدى استيعابك لبرامج الاجتماعات عبر الإنترنت وأدواتها التفاعلية الآن.</p>
+                </div>
+                <button onclick="openQuizModal(2)" class="bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition transform hover:scale-105 flex items-center gap-2.5 cursor-pointer shrink-0">
+                    <i class="fa-solid fa-award text-xl"></i>
+                    <span>اختبار فهم الدرس</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- الدرس الثالث: بث العرض التقديمي (ثيم كهرماني/برتقالي)                 -->
+        <!-- ===================================================================== -->
+        <section id="lesson-3" class="tab-content space-y-6">
+            <!-- ترويسة الدرس الثالث -->
+            <div class="bg-gradient-to-l from-amber-600 via-orange-600 to-amber-700 rounded-3xl p-5 sm:p-6 text-white shadow-xl relative overflow-hidden">
+                <div class="absolute -left-8 -bottom-8 text-white/10 text-9xl pointer-events-none">
+                    <i class="fa-solid fa-tower-broadcast"></i>
+                </div>
+                <div class="relative z-10">
+                    <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold mb-2">
+                        <i class="fa-solid fa-podcast text-gold-400"></i>
+                        الاستراتيجية التربوية: التعلم الإجرائي المتسلسل وفحص الجاهزية
+                    </span>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl font-black">الدرس الثالث: بث العرض التقديمي (Broadcasting Presentations)</h2>
+                    <p class="text-amber-100 mt-1 text-sm sm:text-base max-w-3xl">تعلّم كيف تبث شرائح العرض التقديمي مباشرة للجمهور عبر الإنترنت أينما كانوا، وتعرّف على الخصائص التقنية أثناء البث.</p>
+                </div>
+            </div>
+
+            <!-- طرق البث التفاعلية المتسلسلة -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- الطريقة الأولى: عبر PowerPoint (Present Online) -->
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border-t-4 border-orange-600">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-extrabold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-file-powerpoint text-orange-600 text-xl"></i>
+                            <span>1. البث المباشر عبر PowerPoint</span>
+                        </h3>
+                        <button onclick="nextBroadcastStep()" class="bg-orange-600 hover:bg-orange-700 text-white font-bold px-3 py-1.5 rounded-xl text-xs shadow cursor-pointer flex items-center gap-1">
+                            <span>الخطوة التالية</span>
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">تتبع الخطوات الأربع لبث العرض التقديمي مباشرة عبر المتصفح دون الحاجة لامتلاك الجمهور برنامج PowerPoint:</p>
+
+                    <div class="space-y-2.5">
+                        <div id="bc-step-1" class="p-3 rounded-xl border-2 border-orange-500 bg-orange-50 transition-all">
+                            <div class="font-extrabold text-xs text-orange-900">الخطوة 1: فتح تبويب عرض الشرائح (<span dir="ltr">Slide Show</span>)</div>
+                            <p class="text-xs text-slate-700 mt-0.5">من شريط التبويبات العلوي، اختر <strong>تقديم عبر الإنترنت (<span dir="ltr">Present Online</span>)</strong>.</p>
+                        </div>
+                        <div id="bc-step-2" class="p-3 rounded-xl border-2 border-slate-200 bg-slate-50 opacity-65 transition-all">
+                            <div class="font-extrabold text-xs text-slate-800">الخطوة 2: تسجيل الدخول والاتصال</div>
+                            <p class="text-xs text-slate-600 mt-0.5">سجّل الدخول بحساب مايكروسوفت واضغط على زر <strong>اتصال (<span dir="ltr">Connect</span>)</strong>.</p>
+                        </div>
+                        <div id="bc-step-3" class="p-3 rounded-xl border-2 border-slate-200 bg-slate-50 opacity-65 transition-all">
+                            <div class="font-extrabold text-xs text-slate-800">الخطوة 3: مشاركة الرابط (<span dir="ltr">URL</span>)</div>
+                            <p class="text-xs text-slate-600 mt-0.5">انسخ الرابط الذي يولده البرنامج أو أرسله عبر البريد الإلكتروني للجمهور.</p>
+                        </div>
+                        <div id="bc-step-4" class="p-3 rounded-xl border-2 border-slate-200 bg-slate-50 opacity-65 transition-all">
+                            <div class="font-extrabold text-xs text-slate-800">الخطوة 4: بدء العرض التقديمي</div>
+                            <p class="text-xs text-slate-600 mt-0.5">اضغط على <strong>بدء العرض التقديمي (<span dir="ltr">Start Presentation</span>)</strong> ليتابع الحضور شرائحك عبر متصفحهم.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الطريقة الثانية: عبر Microsoft Teams -->
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border-t-4 border-amber-500 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-extrabold text-slate-800 flex items-center gap-2 mb-3">
+                            <i class="fa-solid fa-window-maximize text-amber-600 text-xl"></i>
+                            <span>2. البث عبر Microsoft Teams</span>
+                        </h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            يمكنك استخدام برنامج <strong>Microsoft Teams</strong> لبث عرضك التقديمي أثناء الاجتماع التفاعلي باتباع الخطوات التالية:
+                        </p>
+                        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 space-y-3 text-xs text-slate-800">
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-amber-500 text-slate-950 font-black flex items-center justify-center shrink-0">1</span>
+                                <span>افتح العرض التقديمي في برنامج PowerPoint على جهازك.</span>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-amber-500 text-slate-950 font-black flex items-center justify-center shrink-0">2</span>
+                                <span>ابدأ الاجتماع في <strong>Microsoft Teams</strong> واضغط على أيقونة <strong>مشاركة المحتوى (<span dir="ltr">Share</span>)</strong>.</span>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-amber-500 text-slate-950 font-black flex items-center justify-center shrink-0">3</span>
+                                <span>اختر <strong>نافذة (<span dir="ltr">Window</span>)</strong> وحدد نافذة العرض التقديمي ليراها المشاركون بوضوح.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 bg-slate-900 text-amber-300 p-3.5 rounded-xl text-xs font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-lightbulb text-gold-400 text-base shrink-0"></i>
+                        <span>ميزة مشاركة نافذة (Window) تضمن تركيز الجمهور على شرائح العرض فقط دون إظهار بقية برامج جهازك.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- محاكي فحص التوافق التقني أثناء البث -->
+            <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200">
+                <div class="mb-4">
+                    <h3 class="text-lg sm:text-xl font-extrabold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-orange-600"></i>
+                        <span>فاحص التوافق التقني أثناء بث العرض التقديمي</span>
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-1">انقر على كل عنصر من عناصر العرض التقديمي لاكتشاف كيف يتصرف أثناء البث عبر الإنترنت:</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                    <button onclick="inspectBroadcastFeature('transitions')" class="bc-feat-btn border-2 border-amber-400 bg-amber-50 rounded-2xl p-3.5 text-right transition cursor-pointer hover:shadow-md">
+                        <i class="fa-solid fa-wand-sparkles text-amber-600 text-xl mb-2"></i>
+                        <div class="font-extrabold text-sm text-slate-800">الانتقالات بين الشرائح</div>
+                        <span class="inline-block mt-1 text-[10px] font-bold bg-amber-200 text-amber-900 px-2 py-0.5 rounded">تتحول تلقائياً</span>
+                    </button>
+
+                    <button onclick="inspectBroadcastFeature('video')" class="bc-feat-btn border-2 border-slate-200 bg-slate-50 rounded-2xl p-3.5 text-right transition cursor-pointer hover:shadow-md">
+                        <i class="fa-solid fa-film text-emerald-600 text-xl mb-2"></i>
+                        <div class="font-extrabold text-sm text-slate-800">مقاطع الفيديو</div>
+                        <span class="inline-block mt-1 text-[10px] font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">يعمل بكفاءة</span>
+                    </button>
+
+                    <button onclick="inspectBroadcastFeature('audio')" class="bc-feat-btn border-2 border-slate-200 bg-slate-50 rounded-2xl p-3.5 text-right transition cursor-pointer hover:shadow-md">
+                        <i class="fa-solid fa-microphone-lines text-emerald-600 text-xl mb-2"></i>
+                        <div class="font-extrabold text-sm text-slate-800">التعليقات الصوتية</div>
+                        <span class="inline-block mt-1 text-[10px] font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">يعمل بكفاءة</span>
+                    </button>
+
+                    <button onclick="inspectBroadcastFeature('popups')" class="bc-feat-btn border-2 border-slate-200 bg-slate-50 rounded-2xl p-3.5 text-right transition cursor-pointer hover:shadow-md">
+                        <i class="fa-solid fa-window-restore text-rose-600 text-xl mb-2"></i>
+                        <div class="font-extrabold text-sm text-slate-800">النوافذ المنبثقة</div>
+                        <span class="inline-block mt-1 text-[10px] font-bold bg-rose-100 text-rose-800 px-2 py-0.5 rounded">تنبيه تقني</span>
+                    </button>
+
+                    <button onclick="inspectBroadcastFeature('links')" class="bc-feat-btn border-2 border-slate-200 bg-slate-50 rounded-2xl p-3.5 text-right transition cursor-pointer hover:shadow-md sm:col-span-2 lg:col-span-1">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-rose-600 text-xl mb-2"></i>
+                        <div class="font-extrabold text-sm text-slate-800">الروابط الخارجية</div>
+                        <span class="inline-block mt-1 text-[10px] font-bold bg-rose-100 text-rose-800 px-2 py-0.5 rounded">تنبيه تقني</span>
+                    </button>
+                </div>
+
+                <div id="bc-feature-result" class="mt-4 bg-slate-900 text-white p-4 rounded-2xl border-r-4 border-amber-400 text-xs sm:text-sm leading-relaxed">
+                    <strong class="text-gold-400"><i class="fa-solid fa-circle-info ml-1"></i> الانتقالات بين الشرائح:</strong> يتم تحويل جميع تأثيرات الانتقال المعقدة تلقائياً إلى تأثير <strong>تلاشٍ (Fade)</strong> لضمان سلاسة البث وعدم تقطعه لدى المشاهدين.
+                </div>
+            </div>
+
+            <!-- زر اختبار فهم الدرس في نهاية الدرس -->
+            <div class="bg-gradient-to-l from-amber-900 to-orange-950 rounded-3xl p-6 text-white shadow-xl border-2 border-gold-500/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="text-center sm:text-right">
+                    <h3 class="text-lg sm:text-xl font-black text-gold-400">هل أتممت استكشاف الدرس الثالث؟</h3>
+                    <p class="text-xs sm:text-sm text-amber-100 mt-1">قيّم مدى استيعابك لخطوات وخصائص بث العرض التقديمي عبر الإنترنت الآن.</p>
+                </div>
+                <button onclick="openQuizModal(3)" class="bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition transform hover:scale-105 flex items-center gap-2.5 cursor-pointer shrink-0">
+                    <i class="fa-solid fa-award text-xl"></i>
+                    <span>اختبار فهم الدرس</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- الدرس الرابع: إدارة الملاحظات (ثيم أرجواني/فوشي - OneNote)            -->
+        <!-- ===================================================================== -->
+        <section id="lesson-4" class="tab-content space-y-6">
+            <!-- ترويسة الدرس الرابع -->
+            <div class="bg-gradient-to-l from-purple-700 via-fuchsia-700 to-purple-800 rounded-3xl p-5 sm:p-6 text-white shadow-xl relative overflow-hidden">
+                <div class="absolute -left-8 -bottom-8 text-white/10 text-9xl pointer-events-none">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+                <div class="relative z-10">
+                    <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold mb-2">
+                        <i class="fa-solid fa-folder-tree text-gold-400"></i>
+                        الاستراتيجية التربوية: التنظيم الهرمي الرقمي والمحاكاة التطبيقية
+                    </span>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl font-black">الدرس الرابع: إدارة الملاحظات (Note Management)</h2>
+                    <p class="text-fuchsia-100 mt-1 text-sm sm:text-base max-w-3xl">اجمع معلوماتك وملاحظاتك الدراسية ونظمها بفعالية باستخدام دفاتر الملاحظات الرقمية مثل <strong>Microsoft OneNote</strong>.</p>
+                </div>
+            </div>
+
+            <!-- البطاقات المفاهيمية لبنية ون نوت والتطبيقات البديلة -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white rounded-2xl p-4 shadow-sm border-r-4 border-purple-600">
+                    <div class="text-purple-600 text-xl mb-1.5"><i class="fa-solid fa-book"></i></div>
+                    <h3 class="font-extrabold text-slate-800 text-base">1. دفاتر الملاحظات</h3>
+                    <p class="text-xs text-slate-600 mt-1">لتقسيم مجالات الحياة أو الدراسة الكبرى (مثل: دفتر شخصي، دفتر العمل، الصفوف الدراسية).</p>
+                </div>
+                <div class="bg-white rounded-2xl p-4 shadow-sm border-r-4 border-fuchsia-600">
+                    <div class="text-fuchsia-600 text-xl mb-1.5"><i class="fa-solid fa-bookmark"></i></div>
+                    <h3 class="font-extrabold text-slate-800 text-base">2. الأقسام (Sections)</h3>
+                    <p class="text-xs text-slate-600 mt-1">تبويبات داخل الدفتر (مثل: رياضيات، أحياء، تقنية) مع إمكانية إعادة تسميتها وتغيير ألوانها.</p>
+                </div>
+                <div class="bg-white rounded-2xl p-4 shadow-sm border-r-4 border-pink-600">
+                    <div class="text-pink-600 text-xl mb-1.5"><i class="fa-solid fa-file-lines"></i></div>
+                    <h3 class="font-extrabold text-slate-800 text-base">3. الصفحات والفرعية</h3>
+                    <p class="text-xs text-slate-600 mt-1">لتسجيل النصوص والصور والصوت والفيديو، وإنشاء <strong>صفحات فرعية</strong> بتغيير المسافة البادئة.</p>
+                </div>
+                <div class="bg-white rounded-2xl p-4 shadow-sm border-r-4 border-emerald-600">
+                    <div class="text-emerald-600 text-xl mb-1.5"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                    <h3 class="font-extrabold text-slate-800 text-base">4. الحفظ والمزامنة</h3>
+                    <p class="text-xs text-slate-600 mt-1">حفظ مستمر وتلقائي دون الحاجة للحفظ اليدوي، مع المزامنة والمشاركة عبر <strong>OneDrive</strong>.</p>
+                </div>
+            </div>
+
+            <!-- مستكشف دفتر ملاحظات رقمي تفاعلي يحاكي Microsoft OneNote -->
+            <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-extrabold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-notebook text-purple-600"></i>
+                            <span>محاكي دفتر الملاحظات الرقمي (Microsoft OneNote)</span>
+                        </h3>
+                        <p class="text-xs text-slate-500 mt-0.5">تنقّل بين الأقسام والصفحات، غيّر لون القسم أو اسمه، وأضف ملاحظة لتشاهد الحفظ التلقائي!</p>
+                    </div>
+                    <div class="flex items-center gap-2 bg-emerald-50 border border-emerald-200 text-emerald-800 px-3 py-1.5 rounded-xl text-xs font-bold">
+                        <i id="onenote-sync-icon" class="fa-solid fa-cloud-check text-emerald-600"></i>
+                        <span id="onenote-sync-status">تم الحفظ والمزامنة تلقائياً عبر OneDrive</span>
+                    </div>
+                </div>
+
+                <!-- واجهة OneNote التفاعلية -->
+                <div class="border-2 border-purple-200 rounded-2xl overflow-hidden bg-slate-50">
+                    <!-- شريط العنوان -->
+                    <div class="bg-purple-800 text-white px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs">
+                        <div class="flex items-center gap-2 font-bold">
+                            <span class="bg-white text-purple-800 font-black px-2 py-0.5 rounded">N</span>
+                            <span>دفتر الملاحظات: الصف الأول الثانوي</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span>لون القسم الحالي:</span>
+                            <button onclick="changeSectionColor('purple')" class="w-5 h-5 rounded-full bg-purple-500 border-2 border-white cursor-pointer" title="بنفسجي"></button>
+                            <button onclick="changeSectionColor('sky')" class="w-5 h-5 rounded-full bg-sky-500 border-2 border-white cursor-pointer" title="سماوي"></button>
+                            <button onclick="changeSectionColor('emerald')" class="w-5 h-5 rounded-full bg-emerald-500 border-2 border-white cursor-pointer" title="زمردي"></button>
+                            <button onclick="changeSectionColor('amber')" class="w-5 h-5 rounded-full bg-amber-500 border-2 border-white cursor-pointer" title="كهرماني"></button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-12 min-h-[290px]">
+                        <!-- عمود الأقسام (Sections) -->
+                        <div class="md:col-span-3 bg-slate-100 border-b md:border-b-0 md:border-l border-slate-200 p-3 space-y-2">
+                            <div class="text-[11px] font-extrabold text-slate-500 px-1">الأقسام (Sections)</div>
+                            <button onclick="selectOneNoteSection('tech')" id="sec-btn-tech" class="w-full text-right px-3 py-2.5 rounded-xl font-bold text-xs flex items-center justify-between bg-purple-600 text-white shadow cursor-pointer">
+                                <span><i class="fa-solid fa-bookmark ml-1.5"></i><span id="sec-name-tech">التقنية الرقمية</span></span>
+                            </button>
+                            <button onclick="selectOneNoteSection('math')" id="sec-btn-math" class="w-full text-right px-3 py-2.5 rounded-xl font-bold text-xs flex items-center justify-between bg-white text-slate-700 hover:bg-slate-200 border border-slate-200 cursor-pointer">
+                                <span><i class="fa-solid fa-bookmark text-sky-500 ml-1.5"></i><span>الرياضيات</span></span>
+                            </button>
+                            <button onclick="selectOneNoteSection('bio')" id="sec-btn-bio" class="w-full text-right px-3 py-2.5 rounded-xl font-bold text-xs flex items-center justify-between bg-white text-slate-700 hover:bg-slate-200 border border-slate-200 cursor-pointer">
+                                <span><i class="fa-solid fa-bookmark text-emerald-500 ml-1.5"></i><span>الأحياء</span></span>
+                            </button>
+
+                            <div class="pt-2 border-t border-slate-200">
+                                <label class="block text-[10px] font-bold text-slate-500 mb-1">إعادة تسمية القسم النشط:</label>
+                                <input type="text" id="rename-section-input" placeholder="اكتب اسماً جديداً..." oninput="renameActiveSection(this.value)" class="w-full px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs bg-white">
+                            </div>
+                        </div>
+
+                        <!-- عمود الصفحات والصفحات الفرعية (Pages & Subpages) -->
+                        <div class="md:col-span-3 bg-white border-b md:border-b-0 md:border-l border-slate-200 p-3 space-y-2">
+                            <div class="flex items-center justify-between px-1">
+                                <span class="text-[11px] font-extrabold text-slate-500">الصفحات (Pages)</span>
+                                <button onclick="toggleSubpageIndent()" class="text-[10px] bg-purple-100 text-purple-800 hover:bg-purple-200 font-bold px-2 py-0.5 rounded cursor-pointer" title="تغيير المسافة البادئة لجعلها صفحة فرعية">
+                                    <i class="fa-solid fa-indent"></i> فرعية
+                                </button>
+                            </div>
+                            <div id="onenote-pages-list" class="space-y-1.5 text-xs">
+                                <!-- يتم تعبئتها برمجياً -->
+                            </div>
+                        </div>
+
+                        <!-- مساحة المحتوى والوسائط المتعددة -->
+                        <div class="md:col-span-6 bg-white p-4 flex flex-col justify-between space-y-3">
+                            <div>
+                                <div class="flex items-center justify-between border-b border-slate-200 pb-2 mb-3">
+                                    <h4 id="onenote-page-title" class="font-black text-slate-800 text-base">وحدة العمل عبر الإنترنت</h4>
+                                    <span class="text-[11px] text-slate-400">حفظ تلقائي مستمر</span>
+                                </div>
+                                <textarea id="onenote-editor" rows="4" oninput="triggerOneNoteAutoSave()" class="w-full p-3 rounded-xl border border-purple-200 bg-purple-50/30 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-purple-500 leading-relaxed">يتميز برنامج OneNote بإمكانية إدراج النصوص والصور ومقاطع الصوت والفيديو في مكان واحد، مع حفظ جميع التغييرات تلقائياً دون زر حفظ!</textarea>
+                            </div>
+
+                            <!-- أزرار إدراج عناصر وسائط متعددة -->
+                            <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-100 text-xs">
+                                <span class="font-bold text-slate-500">إدراج سريع:</span>
+                                <button onclick="insertOneNoteMedia('صورة توضيحية')" class="bg-slate-100 hover:bg-purple-100 text-slate-700 font-bold px-2.5 py-1.5 rounded-lg cursor-pointer"><i class="fa-solid fa-image text-purple-600 ml-1"></i>صورة</button>
+                                <button onclick="insertOneNoteMedia('تسجيل صوتي للمحاضرة')" class="bg-slate-100 hover:bg-purple-100 text-slate-700 font-bold px-2.5 py-1.5 rounded-lg cursor-pointer"><i class="fa-solid fa-microphone text-rose-600 ml-1"></i>صوت</button>
+                                <button onclick="insertOneNoteMedia('مقطع فيديو تعليمي')" class="bg-slate-100 hover:bg-purple-100 text-slate-700 font-bold px-2.5 py-1.5 rounded-lg cursor-pointer"><i class="fa-solid fa-video text-sky-600 ml-1"></i>فيديو</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- التطبيقات البديلة -->
+                <div class="mt-4 bg-fuchsia-50 border border-fuchsia-200 rounded-xl p-3.5 text-xs text-fuchsia-950 flex flex-wrap items-center justify-between gap-2">
+                    <span><i class="fa-solid fa-layer-group text-fuchsia-600 ml-1"></i> <strong>تطبيقات بديلة لإدارة الملاحظات الرقمية:</strong></span>
+                    <div class="flex gap-2 font-bold">
+                        <span class="bg-white px-3 py-1 rounded-lg border border-fuchsia-200 text-emerald-700" dir="ltr">Evernote</span>
+                        <span class="bg-white px-3 py-1 rounded-lg border border-fuchsia-200 text-rose-700" dir="ltr">Bear Notes</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- زر اختبار فهم الدرس في نهاية الدرس -->
+            <div class="bg-gradient-to-l from-purple-900 to-fuchsia-950 rounded-3xl p-6 text-white shadow-xl border-2 border-gold-500/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="text-center sm:text-right">
+                    <h3 class="text-lg sm:text-xl font-black text-gold-400">هل أتممت استكشاف الدرس الرابع؟</h3>
+                    <p class="text-xs sm:text-sm text-fuchsia-100 mt-1">قيّم مدى استيعابك لبنية دفاتر الملاحظات الرقمية ومزايا Microsoft OneNote الآن.</p>
+                </div>
+                <button onclick="openQuizModal(4)" class="bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition transform hover:scale-105 flex items-center gap-2.5 cursor-pointer shrink-0">
+                    <i class="fa-solid fa-award text-xl"></i>
+                    <span>اختبار فهم الدرس</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- الدرس الخامس: الخرائط الذهنية (ثيم زمردي/أخضر - FreePlane)            -->
+        <!-- ===================================================================== -->
+        <section id="lesson-5" class="tab-content space-y-6">
+            <!-- ترويسة الدرس الخامس -->
+            <div class="bg-gradient-to-l from-emerald-700 via-teal-600 to-green-700 rounded-3xl p-5 sm:p-6 text-white shadow-xl relative overflow-hidden">
+                <div class="absolute -left-8 -bottom-8 text-white/10 text-9xl pointer-events-none">
+                    <i class="fa-solid fa-diagram-project"></i>
+                </div>
+                <div class="relative z-10">
+                    <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold mb-2">
+                        <i class="fa-solid fa-brain text-gold-400"></i>
+                        الاستراتيجية التربوية: التفكير البصري والعصف الذهني التفاعلي
+                    </span>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl font-black">الدرس الخامس: الخرائط الذهنية (Mind Maps)</h2>
+                    <p class="text-emerald-100 mt-1 text-sm sm:text-base max-w-3xl">رسومات تخطيطية لتمثيل المعلومات بصورة مرئية، تتمحور حول فكرة مركزية تتفرع منها أفكار ومفاهيم مرتبطة في تسلسل هرمي.</p>
+                </div>
+            </div>
+
+            <!-- فوائد الخرائط الذهنية + مقارنة FreePlane و GitMind -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- الفوائد الست -->
+                <div class="lg:col-span-7 bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200">
+                    <h3 class="text-lg font-extrabold text-slate-800 flex items-center gap-2 mb-4">
+                        <i class="fa-solid fa-lightbulb text-emerald-600"></i>
+                        <span>فوائد استخدام الخرائط الذهنية</span>
+                    </h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-center text-xs">
+                        <div class="bg-emerald-50 border border-emerald-200 p-3.5 rounded-2xl">
+                            <i class="fa-solid fa-palette text-2xl text-emerald-600 mb-1.5"></i>
+                            <div class="font-extrabold text-emerald-950">1. الإبداع والابتكار</div>
+                        </div>
+                        <div class="bg-teal-50 border border-teal-200 p-3.5 rounded-2xl">
+                            <i class="fa-solid fa-sitemap text-2xl text-teal-600 mb-1.5"></i>
+                            <div class="font-extrabold text-teal-950">2. التنظيم والترتيب</div>
+                        </div>
+                        <div class="bg-sky-50 border border-sky-200 p-3.5 rounded-2xl">
+                            <i class="fa-solid fa-puzzle-piece text-2xl text-sky-600 mb-1.5"></i>
+                            <div class="font-extrabold text-sky-950">3. حل المشكلات</div>
+                        </div>
+                        <div class="bg-amber-50 border border-amber-200 p-3.5 rounded-2xl">
+                            <i class="fa-solid fa-scale-balanced text-2xl text-amber-600 mb-1.5"></i>
+                            <div class="font-extrabold text-amber-950">4. اتخاذ القرارات</div>
+                        </div>
+                        <div class="bg-purple-50 border border-purple-200 p-3.5 rounded-2xl">
+                            <i class="fa-solid fa-bullseye text-2xl text-purple-600 mb-1.5"></i>
+                            <div class="font-extrabold text-purple-950">5. زيادة التركيز</div>
+                        </div>
+                        <div class="bg-rose-50 border border-rose-200 p-3.5 rounded-2xl">
+                            <i class="fa-solid fa-bolt text-2xl text-rose-600 mb-1.5"></i>
+                            <div class="font-extrabold text-rose-950">6. العصف الذهني</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- مقارنة البرامج: FreePlane و GitMind -->
+                <div class="lg:col-span-5 bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200 flex flex-col justify-between space-y-3">
+                    <h3 class="text-lg font-extrabold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-laptop-code text-teal-600"></i>
+                        <span>أبرز برامج الخرائط الذهنية</span>
+                    </h3>
+                    <div class="bg-emerald-50 border-r-4 border-emerald-600 p-3.5 rounded-xl">
+                        <div class="flex items-center justify-between">
+                            <span class="font-black text-emerald-950 text-base" dir="ltr">FreePlane</span>
+                            <span class="bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">لأجهزة الحاسب</span>
+                        </div>
+                        <p class="text-xs text-slate-700 mt-1 leading-relaxed">
+                            برنامج حاسوبي مجاني ومفتوح المصدر لإنشاء الخرائط الذهنية، يتيح إضافة العقد، الربط بأسهم دلالية، طي الأفرع، والتصدير كصور أو صفحات ويب.
+                        </p>
+                    </div>
+                    <div class="bg-teal-50 border-r-4 border-teal-600 p-3.5 rounded-xl">
+                        <div class="flex items-center justify-between">
+                            <span class="font-black text-teal-950 text-base" dir="ltr">GitMind</span>
+                            <span class="bg-teal-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">للأجهزة الذكية</span>
+                        </div>
+                        <p class="text-xs text-slate-700 mt-1 leading-relaxed">
+                            تطبيق بديل سحابي يعمل على الهواتف الذكية والأجهزة اللوحية لتصميم الخرائط الذهنية ومشاركتها بسهولة.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- منشئ ومستكشف الخريطة الذهنية التفاعلي (يحاكي FreePlane) -->
+            <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200">
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-slate-100">
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-extrabold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-diagram-next text-emerald-600"></i>
+                            <span>مختبر الخريطة الذهنية التفاعلي (محاكي FreePlane)</span>
+                        </h3>
+                        <p class="text-xs text-slate-500 mt-0.5">أضف عقداً فرعية جديدة، اطوِ الأفرع أو أظهرها، فعّل الأسهم الدلالية الرابطة، أو صدّر الخريطة!</p>
+                    </div>
+
+                    <!-- أدوات التحكم في الخريطة الذهنية -->
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="toggleMindMapBranches()" id="mm-fold-btn" class="bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold px-3 py-2 rounded-xl text-xs cursor-pointer flex items-center gap-1.5">
+                            <i class="fa-solid fa-compress"></i>
+                            <span>طي / إظهار الأفرع</span>
+                        </button>
+                        <button onclick="toggleMindMapArrows()" id="mm-arrow-btn" class="bg-amber-100 hover:bg-amber-200 text-amber-900 font-bold px-3 py-2 rounded-xl text-xs cursor-pointer flex items-center gap-1.5">
+                            <i class="fa-solid fa-share-nodes"></i>
+                            <span>سهم دلالي رابط</span>
+                        </button>
+                        <button onclick="exportMindMapSim()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-2 rounded-xl text-xs shadow cursor-pointer flex items-center gap-1.5">
+                            <i class="fa-solid fa-file-export"></i>
+                            <span>تصدير (PNG / HTML)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- إضافة عقدة جديدة -->
+                <div class="flex flex-col sm:flex-row gap-2 mb-5">
+                    <input type="text" id="mm-new-node-input" placeholder="اكتب فكرة عقدة جديدة لإضافتها للخريطة (مثلاً: التخزين السحابي)..." class="w-full px-3.5 py-2 rounded-xl border border-emerald-300 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    <button onclick="addMindMapNode()" class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-4 py-2 rounded-xl text-xs sm:text-sm shadow cursor-pointer shrink-0 flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>إضافة عقدة فرعية</span>
+                    </button>
+                </div>
+
+                <!-- لوحة الرسم التفاعلية (SVG + العقد) -->
+                <div class="bg-slate-900 rounded-3xl p-4 sm:p-6 text-white relative overflow-hidden">
+                    <!-- سهم دلالي SVG يظهر عند التفعيل -->
+                    <svg id="mm-semantic-svg" class="hidden w-full h-12 mb-2" viewBox="0 0 600 45">
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#FBBF24" />
+                            </marker>
+                        </defs>
+                        <path d="M 140 38 Q 300 2 460 38" stroke="#FBBF24" stroke-width="2.5" stroke-dasharray="6,4" fill="none" marker-end="url(#arrowhead)" />
+                        <text x="300" y="15" text-anchor="middle" fill="#FBBF24" font-size="12" font-weight="bold">علاقة دلالية: تزامن ومشاركة مباشرة</text>
+                    </svg>
+
+                    <!-- الفكرة المركزية -->
+                    <div class="flex flex-col items-center">
+                        <div class="bg-gradient-to-l from-emerald-500 to-teal-500 text-slate-950 font-black px-6 py-3.5 rounded-full shadow-lg border-4 border-white text-sm sm:text-base flex items-center gap-2">
+                            <i class="fa-solid fa-brain"></i>
+                            <span>الفكرة المركزية: العمل عبر الإنترنت</span>
+                        </div>
+
+                        <!-- خط الربط الرأسي -->
+                        <div id="mm-connector-line" class="w-1 h-6 bg-emerald-400"></div>
+
+                        <!-- حاوية العقد الفرعية -->
+                        <div id="mm-branches-container" class="w-full border-t-2 border-emerald-400/60 pt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                            <!-- يتم توليد العقد هنا برمجياً -->
+                        </div>
+                    </div>
+
+                    <div id="mm-export-banner" class="hidden mt-4 bg-emerald-950 border border-emerald-400 text-emerald-300 p-3 rounded-xl text-xs text-center font-bold">
+                        <i class="fa-solid fa-circle-check ml-1"></i> تم تجهيز وتصدير الخريطة الذهنية بنجاح بصيغة صورة (PNG) وصفحة ويب (HTML)!
+                    </div>
+                </div>
+            </div>
+
+            <!-- زر اختبار فهم الدرس في نهاية الدرس -->
+            <div class="bg-gradient-to-l from-emerald-900 to-teal-950 rounded-3xl p-6 text-white shadow-xl border-2 border-gold-500/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="text-center sm:text-right">
+                    <h3 class="text-lg sm:text-xl font-black text-gold-400">هل أتممت استكشاف الدرس الخامس؟</h3>
+                    <p class="text-xs sm:text-sm text-emerald-100 mt-1">قيّم مدى استيعابك لمفاهيم الخرائط الذهنية وأدوات برنامج FreePlane الآن.</p>
+                </div>
+                <button onclick="openQuizModal(5)" class="bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition transform hover:scale-105 flex items-center gap-2.5 cursor-pointer shrink-0">
+                    <i class="fa-solid fa-award text-xl"></i>
+                    <span>اختبار فهم الدرس</span>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== زر الواتساب العائم بالأسفل ==================== -->
+    <a href="https://wa.me/966565588869" target="_blank" rel="noopener noreferrer" aria-label="تواصل عبر واتساب" title="تواصل عبر واتساب" class="fixed bottom-5 left-5 z-40 w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#1ebe5d] text-white shadow-2xl border-2 border-white flex items-center justify-center text-3xl transition-transform hover:scale-110 animate-pulse-slow">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- ==================== التذييل السفلي (Footer) ==================== -->
+    <footer class="bg-royal-950 text-slate-400 py-6 border-t border-slate-800 text-center text-xs mt-auto">
+        <div class="container-main max-w-7xl mx-auto px-4 space-y-2">
+            <p class="font-bold text-slate-300">جميع الحقوق محفوظة © <br>يوسف الحامد | Vanta Voids</p>
+            <p>بيشة | المملكة العربية السعودية</p>
+        </div>
+    </footer>
+
+    <!-- ==================== نافذة التقويم التفاعلي (Quiz Modal) ==================== -->
+    <div id="quiz-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border-4 border-gold-500 animate-[fadeIn_0.3s_ease-out]">
+            <div class="bg-royal-900 text-white px-5 sm:px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-trophy text-gold-400 text-2xl"></i>
+                    <h3 id="quiz-modal-title" class="font-extrabold text-lg sm:text-xl">اختبر فهمك</h3>
+                </div>
+                <button onclick="closeQuizModal()" class="text-slate-300 hover:text-white text-2xl cursor-pointer px-2">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <div id="quiz-body" class="p-4 sm:p-6 max-h-[70vh] overflow-y-auto space-y-5">
+                <!-- يتم توليد الأسئلة هنا برمجياً مع التغذية الراجعة الفورية -->
+            </div>
+
+            <div class="bg-slate-100 px-5 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-3 border-t border-slate-200">
+                <div id="quiz-score-badge" class="font-extrabold text-sm sm:text-base text-slate-800">اختر الإجابة لتظهر لك النتيجة والشرح فوراً!</div>
+                <div class="flex gap-3">
+                    <button onclick="openQuizModal(activeQuizId)" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 sm:px-5 py-2.5 rounded-xl shadow cursor-pointer text-sm">
+                        <i class="fa-solid fa-rotate-right ml-1"></i> إعادة الاختبار
+                    </button>
+                    <button onclick="closeQuizModal()" class="bg-slate-300 hover:bg-slate-400 text-slate-900 font-bold px-4 sm:px-5 py-2.5 rounded-xl cursor-pointer text-sm">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== البرمجة التفاعلية (JavaScript) ==================== -->
+    <script>
+        // التحكم في قائمة البرقر للجوال
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobile-drawer');
+            const icon = document.getElementById('mobile-menu-icon');
+            drawer.classList.toggle('hidden');
+            icon.className = drawer.classList.contains('hidden') ? 'fa-solid fa-bars' : 'fa-solid fa-xmark';
+        }
+
+        function closeMobileMenu() {
+            const drawer = document.getElementById('mobile-drawer');
+            const icon = document.getElementById('mobile-menu-icon');
+            drawer.classList.add('hidden');
+            icon.className = 'fa-solid fa-bars';
+        }
+
+        // نظام مؤثرات صوتية خفيفة للتغذية الراجعة الفورية (بدون روابط خارجية)
+        function playFeedbackSound(isCorrect) {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                if (isCorrect) {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, ctx.currentTime);
+                    osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.1);
+                    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.35);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.35);
+                } else {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(220, ctx.currentTime);
+                    osc.frequency.setValueAtTime(175, ctx.currentTime + 0.15);
+                    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.35);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.35);
+                }
+            } catch (e) {}
+        }
+
+        // 1. إدارة التنقل بين الدروس ومؤشر التقدم
+        const visitedLessons = new Set([1]);
+        const lessonColors = {
+            1: 'bg-sky-600',
+            2: 'bg-indigo-600',
+            3: 'bg-orange-600',
+            4: 'bg-purple-600',
+            5: 'bg-emerald-600'
+        };
+
+        function switchLesson(num) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.getElementById(`lesson-${num}`).classList.add('active');
+
+            for (let i = 1; i <= 5; i++) {
+                const btn = document.getElementById(`nav-btn-${i}`);
+                if (btn) {
+                    btn.className = 'nav-pill flex items-center gap-2.5 px-4 py-2.5 rounded-xl font-bold text-base transition cursor-pointer text-slate-300 hover:bg-white/10';
+                }
+                const mobBtn = document.getElementById(`mob-nav-btn-${i}`);
+                if (mobBtn) {
+                    mobBtn.className = 'mob-nav-pill flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm transition cursor-pointer bg-white/5 text-slate-200 hover:bg-white/10';
+                }
+            }
+            const activeBtn = document.getElementById(`nav-btn-${num}`);
+            if (activeBtn) {
+                activeBtn.className = `nav-pill active flex items-center gap-2.5 px-4 py-2.5 rounded-xl font-bold text-base transition cursor-pointer ${lessonColors[num]} text-white shadow-lg`;
+            }
+            const activeMobBtn = document.getElementById(`mob-nav-btn-${num}`);
+            if (activeMobBtn) {
+                activeMobBtn.className = `mob-nav-pill flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm transition cursor-pointer ${lessonColors[num]} text-white shadow`;
+            }
+
+            visitedLessons.add(num);
+            const percent = Math.round((visitedLessons.size / 5) * 100);
+            document.getElementById('progress-text').innerText = `${percent}%`;
+            document.getElementById('progress-bar').style.width = `${percent}%`;
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // وضع العرض التقديمي (ملء الشاشة وتكبير إضافي لشاشة 60 بوصة)
+        function togglePresentationMode() {
+            document.documentElement.classList.toggle('presentation-html');
+            document.body.classList.toggle('presentation-mode');
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
+            }
+        }
+
+        // =========================================================================
+        // 2. برمجة الدرس الأول: محاكي العمل التزامني وصلاحيات المشاركة
+        // =========================================================================
+        let isDocOnline = true;
+        let currentDocPerm = 'edit';
+
+        function setDocPermission(perm) {
+            currentDocPerm = perm;
+            ['view', 'comment', 'edit'].forEach(p => {
+                const btn = document.getElementById(`perm-btn-${p}`);
+                btn.className = p === perm
+                    ? 'px-2.5 py-1.5 rounded-lg font-bold transition cursor-pointer bg-sky-600 text-white shadow'
+                    : 'px-2.5 py-1.5 rounded-lg font-bold transition cursor-pointer text-slate-700 hover:bg-white';
+            });
+
+            const editor = document.getElementById('collab-doc-editor');
+            const banner = document.getElementById('doc-perm-banner');
+            const commentBox = document.getElementById('doc-comment-box');
+            const linkText = document.getElementById('share-link-text');
+
+            linkText.innerText = `https://cloud.edu.sa/doc/${perm}?id=101`;
+
+            if (perm === 'view') {
+                editor.readOnly = true;
+                editor.classList.add('bg-slate-100', 'text-slate-500');
+                commentBox.classList.add('hidden');
+                banner.className = 'bg-slate-200 border border-slate-300 text-slate-800 px-3 py-2 rounded-xl text-xs font-bold flex items-center justify-between';
+                banner.innerHTML = '<span><i class="fa-solid fa-eye text-slate-600 ml-1"></i> صلاحية (عرض فقط): يمكنك قراءة المستند فقط دون تعديله أو التعليق عليه.</span>';
+            } else if (perm === 'comment') {
+                editor.readOnly = true;
+                editor.classList.add('bg-slate-100', 'text-slate-600');
+                commentBox.classList.remove('hidden');
+                banner.className = 'bg-amber-50 border border-amber-200 text-amber-900 px-3 py-2 rounded-xl text-xs font-bold flex items-center justify-between';
+                banner.innerHTML = '<span><i class="fa-solid fa-comment-dots text-amber-600 ml-1"></i> صلاحية (تعليق): المستند محمي من التعديل المباشر، ويمكنك إضافة تعليقات للفريق.</span>';
+            } else {
+                editor.readOnly = false;
+                editor.classList.remove('bg-slate-100', 'text-slate-500', 'text-slate-600');
+                commentBox.classList.add('hidden');
+                banner.className = 'bg-sky-50 border border-sky-200 text-sky-900 px-3 py-2 rounded-xl text-xs font-bold flex items-center justify-between';
+                banner.innerHTML = '<span><i class="fa-solid fa-pen-to-square text-sky-600 ml-1"></i> صلاحية (تحرير): يمكنك تعديل النص مباشرة وتظهر التغييرات لجميع الفريق فوراً.</span><button onclick="simulatePeerEdit()" class="bg-sky-600 hover:bg-sky-700 text-white px-2.5 py-1 rounded-lg text-[11px] cursor-pointer shrink-0">محاكاة إضافة زميل</button>';
+            }
+            appendDocLog(`تم تغيير صلاحية الرابط إلى: (${perm === 'edit' ? 'تحرير' : perm === 'comment' ? 'تعليق' : 'عرض فقط'})`);
+        }
+
+        function toggleDocConnection() {
+            isDocOnline = !isDocOnline;
+            const btn = document.getElementById('doc-conn-btn');
+            if (isDocOnline) {
+                btn.className = 'bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3.5 py-2 rounded-xl text-xs shadow transition flex items-center gap-1.5 cursor-pointer';
+                btn.innerHTML = '<i class="fa-solid fa-wifi"></i><span>متصل بالسحابة (Online)</span>';
+                appendDocLog('<span class="text-emerald-400">تمت استعادة الاتصال ومزامنة كافة التعديلات المحلية مع السحابة.</span>');
+            } else {
+                btn.className = 'bg-amber-600 hover:bg-amber-700 text-white font-bold px-3.5 py-2 rounded-xl text-xs shadow transition flex items-center gap-1.5 cursor-pointer';
+                btn.innerHTML = '<i class="fa-solid fa-plane"></i><span>دون اتصال (Offline)</span>';
+                appendDocLog('<span class="text-amber-400">أنت تعمل الآن على نسخة محلية دون اتصال؛ ستتم المزامنة عند عودة الإنترنت.</span>');
+            }
+        }
+
+        function simulatePeerEdit() {
+            const editor = document.getElementById('collab-doc-editor');
+            editor.value += '\n[إضافة تزامنية من أحمد]: تم إدراج جدول مقارنة OneDrive و Google Drive بنجاح.';
+            appendDocLog('<span class="text-sky-400">قام (أحمد) بإضافة فقرة جديدة في الوقت الفعلي.</span>');
+        }
+
+        function addDocComment() {
+            const input = document.getElementById('doc-comment-input');
+            if (!input.value.trim()) return;
+            appendDocLog(`<span class="text-amber-300">تعليق جديد: "${input.value.trim()}"</span>`);
+            input.value = '';
+        }
+
+        function appendDocLog(msg) {
+            const log = document.getElementById('doc-activity-log');
+            const div = document.createElement('div');
+            div.innerHTML = `<i class="fa-solid fa-clock text-slate-500 ml-1"></i> ${msg}`;
+            log.prepend(div);
+        }
+
+        function copyShareLink() {
+            const text = document.getElementById('share-link-text').innerText;
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            const fb = document.getElementById('copy-link-feedback');
+            fb.classList.remove('hidden');
+            setTimeout(() => fb.classList.add('hidden'), 2500);
+        }
+
+        // =========================================================================
+        // 3. برمجة الدرس الثاني: محاكي غرفة الاجتماع الافتراضية
+        // =========================================================================
+        let meetMicOn = false;
+        let meetCamOn = false;
+        let meetBlurOn = false;
+        let meetShareOn = false;
+        let meetHandOn = false;
+        let meetBreakoutOn = false;
+
+        function toggleMeetingMic() {
+            meetMicOn = !meetMicOn;
+            const btn = document.getElementById('btn-meet-mic');
+            const icon = document.getElementById('user-mic-icon');
+            if (meetMicOn) {
+                btn.className = 'px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white transition cursor-pointer';
+                btn.innerHTML = '<i class="fa-solid fa-microphone"></i><span>كتم الميكروفون</span>';
+                icon.className = 'fa-solid fa-microphone text-emerald-400';
+                setMeetStatus('الميكروفون مفعّل الآن؛ يمكن للمشاركين سماع صوتك.');
+            } else {
+                btn.className = 'px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 bg-rose-600 hover:bg-rose-500 text-white transition cursor-pointer';
+                btn.innerHTML = '<i class="fa-solid fa-microphone-slash"></i><span>تشغيل الميكروفون</span>';
+                icon.className = 'fa-solid fa-microphone-slash text-rose-400';
+                setMeetStatus('تم كتم الميكروفون للحفاظ على هدوء الاجتماع.');
+            }
+        }
+
+        function toggleMeetingCam() {
+            meetCamOn = !meetCamOn;
+            const btn = document.getElementById('btn-meet-cam');
+            const avatar = document.getElementById('user-cam-avatar');
+            if (meetCamOn) {
+                btn.className = 'px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white transition cursor-pointer';
+                btn.innerHTML = '<i class="fa-solid fa-video"></i><span>إيقاف الكاميرا</span>';
+                avatar.className = 'relative z-10 w-16 h-16 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center text-2xl font-black shadow-lg animate-pulse';
+                setMeetStatus('الكاميرا قيد التشغيل؛ يمكنك تفعيل ضبابية الخلفية (Blur) لحماية خصوصية المكان.');
+            } else {
+                btn.className = 'px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white transition cursor-pointer';
+                btn.innerHTML = '<i class="fa-solid fa-video-slash"></i><span>تشغيل الكاميرا</span>';
+                avatar.className = 'relative z-10 w-16 h-16 rounded-full bg-indigo-600 border-2 border-white flex items-center justify-center text-2xl font-black shadow-lg';
+                setMeetStatus('تم إيقاف الكاميرا.');
+            }
+        }
+
+        function toggleMeetingBlur() {
+            meetBlurOn = !meetBlurOn;
+            const btn = document.getElementById('btn-meet-blur');
+            const bg = document.getElementById('user-cam-bg');
+            if (meetBlurOn) {
+                btn.className = 'px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white transition cursor-pointer';
+                bg.classList.add('bg-blur-sim');
+                setMeetStatus('تم تفعيل ضبابية الخلفية (Blur) لعزل الخلفية والتركيز على المتحدث.');
+            } else {
+                btn.className = 'px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white transition cursor-pointer';
+                bg.classList.remove('bg-blur-sim');
+                setMeetStatus('تم إلغاء ضبابية الخلفية.');
+            }
+        }
+
+        function toggleMeetingShare() {
+            meetShareOn = !meetShareOn;
+            const btn = document.getElementById('btn-meet-share');
+            const view = document.getElementById('meeting-screenshare-view');
+            if (meetShareOn) {
+                btn.className = 'px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white transition cursor-pointer';
+                btn.innerHTML = '<i class="fa-solid fa-stop"></i><span>إيقاف المشاركة</span>';
+                view.classList.remove('hidden');
+                setMeetStatus('تتم مشاركة شاشتك الآن مع جميع أعضاء الاجتماع.');
+            } else {
+                btn.className = 'px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white transition cursor-pointer';
+                btn.innerHTML = '<i class="fa-solid fa-arrow-up-from-bracket"></i><span>مشاركة الشاشة</span>';
+                view.classList.add('hidden');
+                setMeetStatus('تم إيقاف مشاركة الشاشة.');
+            }
+        }
+
+        function toggleMeetingHand() {
+            meetHandOn = !meetHandOn;
+            const btn = document.getElementById('btn-meet-hand');
+            const badge = document.getElementById('user-hand-badge');
+            if (meetHandOn) {
+                btn.className = 'px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 bg-gold-500 text-slate-950 transition cursor-pointer';
+                badge.classList.remove('hidden');
+                setMeetStatus('تم رفع يدك لطلب الإذن بالمشاركة الصوتية دون مقاطعة المتحدث.');
+            } else {
+                btn.className = 'px-3.5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white transition cursor-pointer';
+                badge.classList.add('hidden');
+                setMeetStatus('تم خفض اليد.');
+            }
+        }
+
+        function toggleBreakoutRoom() {
+            meetBreakoutOn = !meetBreakoutOn;
+            const badge = document.getElementById('meeting-room-badge');
+            if (meetBreakoutOn) {
+                badge.className = 'bg-amber-500/20 border border-amber-400 text-amber-300 px-3 py-1 rounded-full font-bold';
+                badge.innerText = 'غرفة جانبية فرعية: المجموعة (أ)';
+                setMeetStatus('انتقلت إلى غرفة جانبية (Breakout Room) لمناقشة المهمة مع مجموعتك المصغرة.');
+            } else {
+                badge.className = 'bg-indigo-600/30 border border-indigo-400/40 text-indigo-200 px-3 py-1 rounded-full font-bold';
+                badge.innerText = 'الغرفة الرئيسية (4 مشاركين)';
+                setMeetStatus('عدت إلى غرفة الاجتماع الرئيسية.');
+            }
+        }
+
+        function setMeetStatus(txt) {
+            document.getElementById('meeting-status-bar').innerText = txt;
+        }
+
+        // =========================================================================
+        // 4. برمجة الدرس الثالث: خطوات بث العرض وفحص التوافق
+        // =========================================================================
+        let currentBcStep = 1;
+        function nextBroadcastStep() {
+            currentBcStep = currentBcStep >= 4 ? 1 : currentBcStep + 1;
+            for (let i = 1; i <= 4; i++) {
+                const card = document.getElementById(`bc-step-${i}`);
+                if (i === currentBcStep) {
+                    card.className = 'p-3 rounded-xl border-2 border-orange-500 bg-orange-50 transition-all shadow-sm';
+                } else {
+                    card.className = 'p-3 rounded-xl border-2 border-slate-200 bg-slate-50 opacity-65 transition-all';
+                }
+            }
+        }
+
+        const bcFeaturesInfo = {
+            transitions: '<strong class="text-gold-400"><i class="fa-solid fa-circle-info ml-1"></i> الانتقالات بين الشرائح:</strong> يتم تحويل جميع تأثيرات الانتقال المعقدة تلقائياً إلى تأثير <strong>تلاشٍ (Fade)</strong> لضمان سلاسة البث وعدم تقطعه لدى المشاهدين.',
+            video: '<strong class="text-emerald-400"><i class="fa-solid fa-circle-check ml-1"></i> مقاطع الفيديو:</strong> تُعرض مقاطع الفيديو المضمنة داخل الشرائح بكفاءة عالية ووضوح لجميع المشاهدين عبر المتصفح.',
+            audio: '<strong class="text-emerald-400"><i class="fa-solid fa-circle-check ml-1"></i> التعليقات الصوتية:</strong> يتم نقل التعليقات الصوتية المصاحبة للعرض التقديمي بوضوح وكفاءة عالية للجمهور.',
+            popups: '<strong class="text-rose-400"><i class="fa-solid fa-triangle-exclamation ml-1"></i> النوافذ المنبثقة:</strong> ظهور أي نافذة منبثقة مفاجئة على جهاز المقدم قد يؤثر سلباً على تجربة المشاهدة لدى الجمهور أثناء البث.',
+            links: '<strong class="text-rose-400"><i class="fa-solid fa-triangle-exclamation ml-1"></i> الانتقال لروابط خارجية:</strong> النقر على روابط خارجية تفتح المتصفح قد يخرج الجمهور من متابعة شرائح العرض التقديمي ويؤثر على شاشة المشاهدين.'
+        };
+
+        function inspectBroadcastFeature(key) {
+            document.getElementById('bc-feature-result').innerHTML = bcFeaturesInfo[key];
+        }
+
+        // =========================================================================
+        // 5. برمجة الدرس الرابع: محاكي Microsoft OneNote
+        // =========================================================================
+        const oneNoteData = {
+            tech: {
+                name: 'التقنية الرقمية',
+                color: 'purple',
+                pages: [
+                    { title: 'وحدة العمل عبر الإنترنت', isSub: false, content: 'يتميز برنامج OneNote بإمكانية إدراج النصوص والصور ومقاطع الصوت والفيديو في مكان واحد، مع حفظ جميع التغييرات تلقائياً دون زر حفظ!' },
+                    { title: 'مقارنة التطبيقات السحابية', isSub: true, content: 'صفحة فرعية: تشمل التطبيقات السحابية OneDrive و Google Drive وتتيح المزامنة الفورية.' }
+                ]
+            },
+            math: {
+                name: 'الرياضيات',
+                color: 'sky',
+                pages: [
+                    { title: 'ملخص الدوال والمعادلات', isSub: false, content: 'ملاحظات درس الدوال الخطية والتمثيل البياني مع أمثلة محلولة.' }
+                ]
+            },
+            bio: {
+                name: 'الأحياء',
+                color: 'emerald',
+                pages: [
+                    { title: 'تصنيف المخلوقات الحية', isSub: false, content: 'ملاحظات ومخططات حول ممالك المخلوقات الحية وخصائصها.' }
+                ]
+            }
+        };
+
+        let activeSectionKey = 'tech';
+        let activePageIdx = 0;
+
+        function renderOneNotePages() {
+            const list = document.getElementById('onenote-pages-list');
+            const sec = oneNoteData[activeSectionKey];
+            list.innerHTML = sec.pages.map((p, idx) => `
+                <button onclick="selectOneNotePage(${idx})" class="w-full text-right px-2.5 py-2 rounded-lg font-bold transition cursor-pointer flex items-center gap-1.5 ${p.isSub ? 'pr-6 text-[11px]' : 'text-xs'} ${idx === activePageIdx ? 'bg-purple-100 text-purple-900 border border-purple-300' : 'hover:bg-slate-100 text-slate-700'}">
+                    <i class="fa-solid ${p.isSub ? 'fa-turn-up fa-rotate-90 text-purple-400' : 'fa-file-lines text-purple-600'}"></i>
+                    <span class="truncate">${p.title}</span>
+                </button>
+            `).join('');
+
+            const currentPage = sec.pages[activePageIdx];
+            document.getElementById('onenote-page-title').innerText = currentPage.title;
+            document.getElementById('onenote-editor').value = currentPage.content;
+        }
+        renderOneNotePages();
+
+        function selectOneNoteSection(key) {
+            activeSectionKey = key;
+            activePageIdx = 0;
+            ['tech', 'math', 'bio'].forEach(k => {
+                const btn = document.getElementById(`sec-btn-${k}`);
+                btn.className = k === key
+                    ? 'w-full text-right px-3 py-2.5 rounded-xl font-bold text-xs flex items-center justify-between bg-purple-600 text-white shadow cursor-pointer'
+                    : 'w-full text-right px-3 py-2.5 rounded-xl font-bold text-xs flex items-center justify-between bg-white text-slate-700 hover:bg-slate-200 border border-slate-200 cursor-pointer';
+            });
+            renderOneNotePages();
+        }
+
+        function selectOneNotePage(idx) {
+            activePageIdx = idx;
+            renderOneNotePages();
+        }
+
+        function toggleSubpageIndent() {
+            const page = oneNoteData[activeSectionKey].pages[activePageIdx];
+            page.isSub = !page.isSub;
+            renderOneNotePages();
+            triggerOneNoteAutoSave();
+        }
+
+        function changeSectionColor(color) {
+            const activeBtn = document.getElementById(`sec-btn-${activeSectionKey}`);
+            const colorMap = {
+                purple: 'bg-purple-600',
+                sky: 'bg-sky-600',
+                emerald: 'bg-emerald-600',
+                amber: 'bg-amber-600'
+            };
+            activeBtn.className = `w-full text-right px-3 py-2.5 rounded-xl font-bold text-xs flex items-center justify-between ${colorMap[color]} text-white shadow cursor-pointer`;
+            triggerOneNoteAutoSave();
+        }
+
+        function renameActiveSection(val) {
+            if (!val.trim()) return;
+            oneNoteData[activeSectionKey].name = val.trim();
+            const span = document.querySelector(`#sec-btn-${activeSectionKey} span span`) || document.querySelector(`#sec-btn-${activeSectionKey} span`);
+            if (activeSectionKey === 'tech') {
+                document.getElementById('sec-name-tech').innerText = val.trim();
+            } else {
+                span.innerHTML = `<i class="fa-solid fa-bookmark ml-1.5"></i>${val.trim()}`;
+            }
+            triggerOneNoteAutoSave();
+        }
+
+        function triggerOneNoteAutoSave() {
+            const editor = document.getElementById('onenote-editor');
+            oneNoteData[activeSectionKey].pages[activePageIdx].content = editor.value;
+            const status = document.getElementById('onenote-sync-status');
+            status.innerText = 'جارٍ الحفظ والمزامنة تلقائياً...';
+            setTimeout(() => {
+                status.innerText = 'تم الحفظ والمزامنة تلقائياً عبر OneDrive';
+            }, 600);
+        }
+
+        function insertOneNoteMedia(label) {
+            const editor = document.getElementById('onenote-editor');
+            editor.value += `\n[تم إدراج ${label} بنجاح داخل الصفحة]`;
+            triggerOneNoteAutoSave();
+        }
+
+        // =========================================================================
+        // 6. برمجة الدرس الخامس: مختبر الخريطة الذهنية التفاعلي (FreePlane)
+        // =========================================================================
+        const mindMapNodes = [
+            { title: 'المستندات السحابية', sub: 'OneDrive & Google Drive', color: 'border-sky-400 bg-sky-950/70' },
+            { title: 'الاجتماعات الافتراضية', sub: 'Teams, Zoom, WebEx', color: 'border-indigo-400 bg-indigo-950/70' },
+            { title: 'بث العروض التقديمية', sub: 'Present Online', color: 'border-amber-400 bg-amber-950/70' },
+            { title: 'إدارة الملاحظات', sub: 'Microsoft OneNote', color: 'border-fuchsia-400 bg-fuchsia-950/70' }
+        ];
+        let mmFolded = false;
+
+        function renderMindMap() {
+            const container = document.getElementById('mm-branches-container');
+            container.innerHTML = mindMapNodes.map((node, idx) => `
+                <div class="border-2 ${node.color} rounded-2xl p-3.5 text-center transition-all">
+                    <div class="font-extrabold text-sm text-white">${node.title}</div>
+                    <div class="mm-sub-branch text-xs text-slate-300 mt-1 ${mmFolded ? 'hidden' : ''}">${node.sub}</div>
+                </div>
+            `).join('');
+        }
+        renderMindMap();
+
+        function addMindMapNode() {
+            const input = document.getElementById('mm-new-node-input');
+            const val = input.value.trim();
+            if (!val) return;
+            mindMapNodes.push({
+                title: val,
+                sub: 'عقدة فرعية مضافة',
+                color: 'border-emerald-400 bg-emerald-950/70'
+            });
+            input.value = '';
+            renderMindMap();
+        }
+
+        function toggleMindMapBranches() {
+            mmFolded = !mmFolded;
+            renderMindMap();
+        }
+
+        function toggleMindMapArrows() {
+            const svg = document.getElementById('mm-semantic-svg');
+            svg.classList.toggle('hidden');
+        }
+
+        function exportMindMapSim() {
+            const banner = document.getElementById('mm-export-banner');
+            banner.classList.remove('hidden');
+            setTimeout(() => banner.classList.add('hidden'), 3500);
+        }
+
+        // =========================================================================
+        // 7. نظام التقويم التفاعلي بالتغذية الراجعة الفورية الفردية لكل سؤال
+        // =========================================================================
+        const quizzesData = {
+            1: {
+                title: 'اختبر فهمك: الدرس الأول (المستندات عبر الإنترنت)',
+                questions: [
+                    {
+                        q: 'خدمة تخزين سحابي من جوجل ترتبط بحساب البريد الإلكتروني Gmail وتضم مستندات وجداول وعروضاً:',
+                        opts: ['Microsoft OneDrive', 'Google Drive', 'FreePlane'],
+                        ans: 1,
+                        exp: 'ترتبط خدمة Google Drive بحساب Gmail وتوفر حزمة Google Workspace (Docs, Sheets, Slides, Forms).'
+                    },
+                    {
+                        q: 'ماذا تتيح ميزة العمل التزامني (المشترك) على المستندات عبر الإنترنت؟',
+                        opts: ['تعديل الملف من شخص واحد فقط في اليوم', 'عمل عدة أشخاص على نفس الملف في نفس الوقت', 'إلغاء الحفظ التلقائي للملف'],
+                        ans: 1,
+                        exp: 'تتيح أدوات المستندات السحابية لعدة مستخدمين تحرير نفس المستند في الوقت الفعلي ومشاهدة تعديلات بعضهم فوراً.'
+                    },
+                    {
+                        q: 'كيف يمكنك متابعة العمل على مستند سحابي في OneDrive عند انقطاع الإنترنت؟',
+                        opts: ['لا يمكن فتحه إطلاقاً', 'بتحميل نسخة محلية للعمل دون اتصال ثم مزامنتها لاحقاً', 'بإعادة تثبيت نظام التشغيل'],
+                        ans: 1,
+                        exp: 'يمكنك تحميل نسخة محلية من الملف للعمل عليها دون اتصال (Offline)، ثم رفعها ومزامنتها عند عودة الاتصال.'
+                    }
+                ]
+            },
+            2: {
+                title: 'اختبر فهمك: الدرس الثاني (الاجتماعات عبر الإنترنت)',
+                questions: [
+                    {
+                        q: 'ما اسم الميزة في Microsoft Teams التي تُمكّنك من تمويه الخلفية خلف المتحدث؟',
+                        opts: ['تقسيم الغرف (Breakout Rooms)', 'ضبابية الخلفية (Blur)', 'الانتقال بالتلاشي (Fade)'],
+                        ans: 1,
+                        exp: 'توفر ميزة ضبابية الخلفية (Blur) في Microsoft Teams عزلاً بصرياً للخلفية للحفاظ على الخصوصية.'
+                    },
+                    {
+                        q: 'أي برنامج مؤتمرات فيديو لا يلزم الحضور بامتلاك حساب مسبق إلا إذا ألزم المضيف ذلك؟',
+                        opts: ['Cisco WebEx', 'Google Sheets', 'Microsoft OneNote'],
+                        ans: 0,
+                        exp: 'في برنامج Cisco WebEx لا يُشترط على المدعوين امتلاك حساب مسبق للانضمام للاجتماع إلا إذا فرض المضيف ذلك.'
+                    },
+                    {
+                        q: 'يتميز برنامج Zoom بميزة تقسيم المشاركين إلى مجموعات نقاش مصغرة تُسمى:',
+                        opts: ['الغرف الجانبية (Breakout Rooms)', 'الدارات المتكاملة', 'الصفحات الفرعية'],
+                        ans: 0,
+                        exp: 'تُستخدم ميزة تقسيم الغرف (Breakout Rooms) في Zoom لتوزيع المشاركين على غرف فرعية للعمل الجماعي.'
+                    }
+                ]
+            },
+            3: {
+                title: 'اختبر فهمك: الدرس الثالث (بث العرض التقديمي)',
+                questions: [
+                    {
+                        q: 'من أي تبويب في برنامج PowerPoint نبدأ بث العرض التقديمي عبر الإنترنت؟',
+                        opts: ['إدراج (Insert)', 'عرض الشرائح (Slide Show) ثم Present Online', 'تصميم (Design)'],
+                        ans: 1,
+                        exp: 'لبدء البث المباشر، ننتقل إلى تبويب عرض الشرائح (Slide Show) ثم نختار تقديم عبر الإنترنت (Present Online).'
+                    },
+                    {
+                        q: 'ماذا يحدث لتأثيرات الانتقال بين الشرائح أثناء بث العرض التقديمي عبر الإنترنت؟',
+                        opts: ['تُحذف جميع الشرائح', 'تتحول تلقائياً إلى تأثير تلاشٍ (Fade)', 'تتوقف الصوتيات تماماً'],
+                        ans: 1,
+                        exp: 'يقوم البث عبر الإنترنت بتحويل تأثيرات الانتقال بين الشرائح تلقائياً إلى تأثير تلاشٍ (Fade) لضمان استقرار البث.'
+                    },
+                    {
+                        q: 'أي مما يلي قد يؤثر سلباً على شاشة المشاهدين أثناء بث العرض التقديمي؟',
+                        opts: ['ظهور النوافذ المنبثقة أو الانتقال لروابط خارجية', 'تشغيل مقطع فيديو داخل الشريحة', 'وجود تعليق صوتي'],
+                        ans: 0,
+                        exp: 'تظهر مقاطع الفيديو والتعليقات الصوتية بكفاءة، بينما تؤثر النوافذ المنبثقة أو الروابط الخارجية على شاشة المشاهدين.'
+                    }
+                ]
+            },
+            4: {
+                title: 'اختبر فهمك: الدرس الرابع (إدارة الملاحظات)',
+                questions: [
+                    {
+                        q: 'كيف يتم حفظ التغييرات والبيانات داخل برنامج Microsoft OneNote؟',
+                        opts: ['بالضغط على زر الحفظ يدوياً كل دقيقة', 'بشكل مستمر وتلقائي دون الحاجة للحفظ اليدوي', 'لا يتم حفظها إلا عند إغلاق الحاسب'],
+                        ans: 1,
+                        exp: 'يتميز Microsoft OneNote بالحفظ المستمر والتلقائي لكافة النصوص والوسائط دون الحاجة إلى أمر حفظ يدوي.'
+                    },
+                    {
+                        q: 'كيف يمكن تحويل صفحة عادية في OneNote إلى "صفحة فرعية"؟',
+                        opts: ['بتغيير المسافة البادئة للصفحة', 'بحذف القسم بالكامل', 'بتغيير لون الخط فقط'],
+                        ans: 0,
+                        exp: 'يمكن تنظيم الصفحات هرمياً بإنشاء صفحات فرعية (Subpages) من خلال تغيير المسافة البادئة للصفحة.'
+                    },
+                    {
+                        q: 'أي من التطبيقات التالية يُعد بديلاً لبرنامج Microsoft OneNote في إدارة الملاحظات؟',
+                        opts: ['Evernote و Bear Notes', 'Cisco WebEx', 'PowerPoint'],
+                        ans: 0,
+                        exp: 'من أبرز التطبيقات البديلة لإدارة الملاحظات الرقمية تطبيقا Evernote و Bear Notes.'
+                    }
+                ]
+            },
+            5: {
+                title: 'اختبر فهمك: الدرس الخامس (الخرائط الذهنية)',
+                questions: [
+                    {
+                        q: 'تتمحور الخريطة الذهنية حول:',
+                        opts: ['جدول أرقام عشوائي', 'فكرة أو كلمة مركزية تتفرع منها أفكار مرتبطة هرمياً', 'نص سردي طويل دون رسومات'],
+                        ans: 1,
+                        exp: 'الخريطة الذهنية رسم تخطيطي بصري يبدأ بفكرة مركزية في المنتصف تتفرع منها المفاهيم والأفكار المرتبطة هرمياً.'
+                    },
+                    {
+                        q: 'برنامج حاسوبي مجاني ومفتوح المصدر يُستخدم لإنشاء الخرائط الذهنية وتصديرها بصيغ مختلفة:',
+                        opts: ['FreePlane', 'Windows Media Player', 'Google Forms'],
+                        ans: 0,
+                        exp: 'يُعد برنامج FreePlane أداة حاسوبية متميزة لإنشاء الخرائط الذهنية وإضافة العقد والأسهم الدلالية وتصديرها.'
+                    },
+                    {
+                        q: 'تطبيق بديل لإنشاء الخرائط الذهنية مخصص للأجهزة الذكية:',
+                        opts: ['GitMind', 'OneDrive', 'Zoom'],
+                        ans: 0,
+                        exp: 'يُستخدم تطبيق GitMind على الأجهزة الذكية كبديل عملي لتصميم ومشاركة الخرائط الذهنية.'
+                    }
+                ]
+            }
+        };
+
+        let activeQuizId = 1;
+        let answeredState = {};
+
+        function openQuizModal(lessonId) {
+            activeQuizId = lessonId;
+            answeredState = {};
+            const quiz = quizzesData[lessonId];
+            document.getElementById('quiz-modal-title').innerText = quiz.title;
+            document.getElementById('quiz-score-badge').innerText = `النتيجة: 0 من ${quiz.questions.length} — اختر الإجابة لتظهر التغذية الراجعة فوراً`;
+            document.getElementById('quiz-score-badge').className = 'font-extrabold text-sm sm:text-base text-slate-800';
+
+            const body = document.getElementById('quiz-body');
+            body.innerHTML = quiz.questions.map((item, qIdx) => `
+                <div class="bg-slate-50 border-2 border-slate-200 rounded-2xl p-4 sm:p-5 transition-all" id="q-box-${qIdx}">
+                    <p class="font-extrabold text-slate-900 text-base sm:text-lg mb-3.5">${qIdx + 1}. ${item.q}</p>
+                    <div class="space-y-2.5" id="q-opts-${qIdx}">
+                        ${item.opts.map((opt, oIdx) => `
+                            <button type="button" onclick="handleInstantAnswer(${qIdx}, ${oIdx})" id="opt-btn-${qIdx}-${oIdx}" class="w-full text-right flex items-center gap-3 bg-white border-2 border-slate-300 hover:border-blue-500 hover:bg-blue-50/50 p-3.5 rounded-xl cursor-pointer text-sm sm:text-base font-bold text-slate-800 transition">
+                                <span class="w-8 h-8 rounded-lg bg-slate-100 border border-slate-300 flex items-center justify-center text-sm font-black shrink-0">${['أ', 'ب', 'ج'][oIdx]}</span>
+                                <span>${opt}</span>
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div id="q-feedback-${qIdx}" class="hidden mt-4 p-4 rounded-xl text-sm sm:text-base leading-relaxed"></div>
+                </div>
+            `).join('');
+
+            const modal = document.getElementById('quiz-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function handleInstantAnswer(qIdx, selectedIdx) {
+            if (answeredState[qIdx] !== undefined) return;
+
+            const quiz = quizzesData[activeQuizId];
+            const item = quiz.questions[qIdx];
+            const isCorrect = selectedIdx === item.ans;
+            answeredState[qIdx] = isCorrect;
+
+            playFeedbackSound(isCorrect);
+
+            const box = document.getElementById(`q-box-${qIdx}`);
+            const feedbackEl = document.getElementById(`q-feedback-${qIdx}`);
+
+            item.opts.forEach((_, oIdx) => {
+                const btn = document.getElementById(`opt-btn-${qIdx}-${oIdx}`);
+                btn.disabled = true;
+                btn.classList.remove('cursor-pointer', 'hover:border-blue-500', 'hover:bg-blue-50/50');
+                btn.classList.add('cursor-default');
+
+                if (oIdx === item.ans) {
+                    btn.className = 'w-full text-right flex items-center gap-3 bg-emerald-100 border-2 border-emerald-600 p-3.5 rounded-xl text-sm sm:text-base font-extrabold text-emerald-950';
+                    btn.querySelector('span').innerHTML = '<i class="fa-solid fa-check text-emerald-700"></i>';
+                } else if (oIdx === selectedIdx && !isCorrect) {
+                    btn.className = 'w-full text-right flex items-center gap-3 bg-rose-100 border-2 border-rose-500 p-3.5 rounded-xl text-sm sm:text-base font-extrabold text-rose-950';
+                    btn.querySelector('span').innerHTML = '<i class="fa-solid fa-xmark text-rose-700"></i>';
+                } else {
+                    btn.classList.add('opacity-55');
+                }
+            });
+
+            feedbackEl.classList.remove('hidden');
+            if (isCorrect) {
+                box.className = 'bg-emerald-50/70 border-2 border-emerald-500 rounded-2xl p-4 sm:p-5 transition-all';
+                feedbackEl.className = 'mt-4 p-4 rounded-xl bg-emerald-600 text-white shadow-md';
+                feedbackEl.innerHTML = `
+                    <div class="font-black text-base sm:text-lg flex items-center gap-2 mb-1">
+                        <i class="fa-solid fa-circle-check text-gold-400 text-xl"></i>
+                        <span>أحسنت! إجابة صحيحة وموفقة</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-emerald-50 font-medium">${item.exp}</p>
+                `;
+            } else {
+                box.className = 'bg-rose-50/70 border-2 border-rose-500 rounded-2xl p-4 sm:p-5 transition-all';
+                feedbackEl.className = 'mt-4 p-4 rounded-xl bg-rose-600 text-white shadow-md';
+                feedbackEl.innerHTML = `
+                    <div class="font-black text-base sm:text-lg flex items-center gap-2 mb-1">
+                        <i class="fa-solid fa-circle-xmark text-amber-300 text-xl"></i>
+                        <span>إجابة غير صحيحة — الإجابة الصحيحة هي: (${item.opts[item.ans]})</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-rose-50 font-medium">${item.exp}</p>
+                `;
+            }
+
+            const totalAnswered = Object.keys(answeredState).length;
+            const correctCount = Object.values(answeredState).filter(Boolean).length;
+            const badge = document.getElementById('quiz-score-badge');
+
+            if (totalAnswered === quiz.questions.length) {
+                badge.innerHTML = `<i class="fa-solid fa-star text-gold-500 ml-1"></i> اكتمل الاختبار! نتيجتك النهائية: ${correctCount} من ${quiz.questions.length} ${correctCount === quiz.questions.length ? '— ممتاز يا بطل!' : ''}`;
+                badge.className = correctCount === quiz.questions.length ? 'font-extrabold text-sm sm:text-base text-emerald-700' : 'font-extrabold text-sm sm:text-base text-blue-800';
+            } else {
+                badge.innerHTML = `تمت الإجابة على ${totalAnswered} من ${quiz.questions.length} | الإجابات الصحيحة: <span class="text-emerald-700">${correctCount}</span>`;
+            }
+        }
+
+        function closeQuizModal() {
+            const modal = document.getElementById('quiz-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
+</body>
+</html>
