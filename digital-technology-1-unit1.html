@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تقنية رقمية 1-1 | الوحدة الأولى: أساسيات علم الحاسب</title>
+    <title>تقنية رقمية-1 | الوحدة الأولى: أساسيات علم الحاسب</title>
     
     <!-- الخطوط العربية الاحترافية من Google Fonts مع خطوط احتياطية -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -54,10 +54,21 @@
     </script>
 
     <style>
+        /* ضبط مقاس الخط الأساسي ليتناسب مع الجوال والآيباد والكمبيوتر */
         html {
-            /* تكبير الخط الأساسي للصفحة لتتناسب جميع وحدات rem مع شاشة 60 بوصة */
-            font-size: 20px;
+            font-size: 15px;
         }
+        @media (min-width: 640px) {
+            html {
+                font-size: 17.5px;
+            }
+        }
+        @media (min-width: 1024px) {
+            html {
+                font-size: 20px;
+            }
+        }
+
         body {
             font-family: 'Tajawal', 'Cairo', sans-serif;
             background-color: #F1F5F9;
@@ -120,7 +131,7 @@
 
         /* وضع العرض التقديمي (سبورة ذكية 60 بوصة - تكبير إضافي) */
         html.presentation-html {
-            font-size: 23px;
+            font-size: 23px !important;
         }
         body.presentation-mode .container-main {
             max-width: 98% !important;
@@ -131,58 +142,125 @@
 
     <!-- ==================== الترويسة العلوية (Header) ==================== -->
     <header class="bg-gradient-to-l from-royal-950 via-royal-900 to-slate-800 text-white shadow-xl border-b-4 border-gold-500 sticky top-0 z-50">
-        <div class="container-main max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+        <div class="container-main max-w-7xl mx-auto px-3 sm:px-4 py-3 flex flex-wrap items-center justify-between gap-3">
             
-            <!-- الشعار وعنوان المادة -->
-            <div class="flex items-center gap-3">
-                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 text-royal-950 flex items-center justify-center shadow-lg font-black text-2xl">
-                    <i class="fa-solid fa-microchip"></i>
-                </div>
-                <div>
-                    <div class="flex items-center gap-2">
-                        <span class="bg-gold-500/20 text-gold-400 border border-gold-500/30 text-xs font-bold px-2.5 py-0.5 rounded-full">تقنية رقمية 1-1</span>
-                        <span class="text-slate-300 text-xs hidden sm:inline">الصف الأول الثانوي</span>
+            <!-- الشعار وعنوان المادة + زر البرقر للجوال -->
+            <div class="flex items-center justify-between w-full md:w-auto gap-3">
+                <div class="flex items-center gap-2.5 sm:gap-3">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 text-royal-950 flex items-center justify-center shadow-lg font-black text-xl sm:text-2xl shrink-0">
+                        <i class="fa-solid fa-microchip"></i>
                     </div>
-                    <h1 class="text-lg sm:text-xl md:text-2xl font-extrabold tracking-tight text-white mt-0.5">
-                        الوحدة الأولى: <span class="text-gold-400">أساسيات علم الحاسب</span>
-                    </h1>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-gold-500/20 text-gold-400 border border-gold-500/30 text-xs font-bold px-2.5 py-0.5 rounded-full">تقنية رقمية 1-1</span>
+                            <span class="text-slate-300 text-xs hidden sm:inline">الصف الأول الثانوي</span>
+                        </div>
+                        <h1 class="text-base sm:text-xl md:text-2xl font-extrabold tracking-tight text-white mt-0.5">
+                            الوحدة الأولى: <span class="text-gold-400">أساسيات علم الحاسب</span>
+                        </h1>
+                    </div>
                 </div>
+
+                <!-- زر البرقر (يظهر في الجوال فقط) -->
+                <button onclick="toggleMobileMenu()" id="mobile-menu-btn" aria-label="القائمة الرئيسية" class="md:hidden bg-white/10 hover:bg-white/20 border border-white/20 text-gold-400 w-11 h-11 rounded-xl flex items-center justify-center text-xl transition cursor-pointer shrink-0">
+                    <i id="mobile-menu-icon" class="fa-solid fa-bars"></i>
+                </button>
             </div>
 
-            <!-- معلومات المعلم وأدوات التحكم -->
-            <div class="flex items-center gap-3 flex-wrap">
-                <!-- بطاقة المعلم -->
-                <div class="flex items-center gap-2.5 bg-white/10 backdrop-blur-sm border border-white/15 px-3.5 py-1.5 rounded-xl">
-                    <div class="w-8 h-8 rounded-full bg-gold-500 text-royal-950 flex items-center justify-center font-bold text-sm">
+            <!-- معلومات المعلم ومؤشر التقدم (ظاهران دائماً) + أزرار الأدوات (للكمبيوتر والآيباد) -->
+            <div class="flex items-center justify-between md:justify-end w-full md:w-auto gap-2 sm:gap-3 flex-wrap">
+                <!-- بطاقة المعلم (ظاهرة دائماً في جميع الشاشات) -->
+                <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/15 px-3 py-1.5 rounded-xl">
+                    <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gold-500 text-royal-950 flex items-center justify-center font-bold text-xs sm:text-sm shrink-0">
                         <i class="fa-solid fa-chalkboard-user"></i>
                     </div>
                     <div class="text-right">
-                        <p class="text-xs text-slate-300 leading-none">إعداد وتقديم المعلم</p>
-                        <p class="text-base font-bold text-gold-400 leading-tight mt-0.5">أ. يوسف القرني</p>
+                        <p class="text-[10px] sm:text-xs text-slate-300 leading-none">تصميم وتنفيذ :</p>
+                        <p class="text-xs sm:text-base font-bold text-gold-400 leading-tight mt-0.5">أ. يوسف القرني</p>
                     </div>
                 </div>
 
-                <!-- مؤشر التقدم العام -->
-                <div class="hidden md:flex flex-col items-end bg-slate-800/80 px-3.5 py-2 rounded-xl border border-slate-700">
-                    <div class="flex items-center gap-2 text-xs text-slate-300 mb-1">
+                <!-- مؤشر التقدم العام (ظاهر دائماً في جميع الشاشات) -->
+                <div class="flex flex-col items-end bg-slate-800/80 px-3 py-1.5 sm:py-2 rounded-xl border border-slate-700">
+                    <div class="flex items-center gap-1.5 text-[11px] sm:text-xs text-slate-300 mb-1">
                         <span>إنجاز الوحدة:</span>
                         <span id="progress-text" class="font-bold text-emerald-400">20%</span>
                     </div>
-                    <div class="w-32 h-2.5 bg-slate-700 rounded-full overflow-hidden">
+                    <div class="w-24 sm:w-32 h-2 sm:h-2.5 bg-slate-700 rounded-full overflow-hidden">
                         <div id="progress-bar" class="h-full bg-gradient-to-l from-emerald-400 to-teal-500 transition-all duration-500" style="width: 20%"></div>
                     </div>
                 </div>
 
-                <!-- زر الوضع التقديمي / ملء الشاشة -->
-                <button onclick="togglePresentationMode()" id="btn-fullscreen" title="تكبير إضافي للعرض على شاشة 60 بوصة" class="bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold px-4 py-2.5 rounded-xl shadow-md transition flex items-center gap-2 text-sm cursor-pointer">
+                <!-- أزرار سطح المكتب والآيباد (مخفية في الجوال وموجودة داخل زر البرقر) -->
+                <div class="hidden md:flex items-center gap-2.5 flex-wrap">
+                    <!-- زر Vanta Voids -->
+                    <a href="https://yh-addict.github.io/vanta-voids/" target="_blank" rel="noopener noreferrer" class="bg-slate-800 hover:bg-slate-700 text-gold-400 border border-gold-500/40 font-extrabold px-3.5 py-2.5 rounded-xl shadow-md transition flex items-center gap-2 text-sm cursor-pointer">
+                        <i class="fa-solid fa-rocket"></i>
+                        <span>Vanta Voids</span>
+                    </a>
+
+                    <!-- زر المصادر الاضافية بجوار تكبير الشاشة -->
+                    <a href="https://asrboys-my.sharepoint.com/:f:/g/personal/t991861_asrb_moe_gov_sa/IgBOgJPz5ej0RqchaRfssJMUAToG-BHNliSGQWjEG8XD7nI?e=jWRjOR" target="_blank" rel="noopener noreferrer" class="bg-sky-600 hover:bg-sky-500 text-white font-extrabold px-3.5 py-2.5 rounded-xl shadow-md transition flex items-center gap-2 text-sm cursor-pointer">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span>المصادر الاضافية</span>
+                    </a>
+
+                    <!-- زر الوضع التقديمي / ملء الشاشة -->
+                    <button onclick="togglePresentationMode()" id="btn-fullscreen" title="تكبير إضافي للعرض على شاشة 60 بوصة" class="bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold px-4 py-2.5 rounded-xl shadow-md transition flex items-center gap-2 text-sm cursor-pointer">
+                        <i class="fa-solid fa-expand"></i>
+                        <span>تكبير الشاشة</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- القائمة المنسدلة للجوال (تفتح عند الضغط على زر البرقر) -->
+        <div id="mobile-drawer" class="hidden md:hidden bg-royal-950 border-t border-white/15 px-4 py-4 space-y-4 shadow-2xl max-h-[80vh] overflow-y-auto">
+            <div>
+                <p class="text-xs font-bold text-slate-400 mb-2">التنقل بين دروس الوحدة:</p>
+                <div class="grid grid-cols-1 gap-2">
+                    <button onclick="switchLesson(1); closeMobileMenu();" id="mob-nav-btn-1" class="mob-nav-pill flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm transition cursor-pointer bg-blue-600 text-white shadow">
+                        <span class="w-6 h-6 rounded-lg bg-white/20 flex items-center justify-center text-xs">1</span>
+                        <span>تمثيل البيانات</span>
+                    </button>
+                    <button onclick="switchLesson(2); closeMobileMenu();" id="mob-nav-btn-2" class="mob-nav-pill flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm transition cursor-pointer bg-white/5 text-slate-200 hover:bg-white/10">
+                        <span class="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center text-xs">2</span>
+                        <span>بنية الحاسب</span>
+                    </button>
+                    <button onclick="switchLesson(3); closeMobileMenu();" id="mob-nav-btn-3" class="mob-nav-pill flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm transition cursor-pointer bg-white/5 text-slate-200 hover:bg-white/10">
+                        <span class="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center text-xs">3</span>
+                        <span>أنظمة التشغيل</span>
+                    </button>
+                    <button onclick="switchLesson(4); closeMobileMenu();" id="mob-nav-btn-4" class="mob-nav-pill flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm transition cursor-pointer bg-white/5 text-slate-200 hover:bg-white/10">
+                        <span class="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center text-xs">4</span>
+                        <span>أساسيات الشبكات</span>
+                    </button>
+                    <button onclick="switchLesson(5); closeMobileMenu();" id="mob-nav-btn-5" class="mob-nav-pill flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm transition cursor-pointer bg-white/5 text-slate-200 hover:bg-white/10">
+                        <span class="w-6 h-6 rounded-lg bg-white/10 flex items-center justify-center text-xs">5</span>
+                        <span>التقنية والمجتمع</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-3 space-y-2.5">
+                <p class="text-xs font-bold text-slate-400">روابط وأدوات إضافية:</p>
+                <a href="https://asrboys-my.sharepoint.com/:f:/g/personal/t991861_asrb_moe_gov_sa/IgBOgJPz5ej0RqchaRfssJMUAToG-BHNliSGQWjEG8XD7nI?e=jWRjOR" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()" class="w-full bg-sky-600 hover:bg-sky-500 text-white font-extrabold px-4 py-3 rounded-xl shadow flex items-center justify-center gap-2 text-sm">
+                    <i class="fa-solid fa-folder-open"></i>
+                    <span>المصادر الاضافية</span>
+                </a>
+                <a href="https://yh-addict.github.io/vanta-voids/" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()" class="w-full bg-slate-800 hover:bg-slate-700 text-gold-400 border border-gold-500/40 font-extrabold px-4 py-3 rounded-xl shadow flex items-center justify-center gap-2 text-sm">
+                    <i class="fa-solid fa-rocket"></i>
+                    <span>Vanta Voids</span>
+                </a>
+                <button onclick="togglePresentationMode(); closeMobileMenu();" class="w-full bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold px-4 py-3 rounded-xl shadow flex items-center justify-center gap-2 text-sm cursor-pointer">
                     <i class="fa-solid fa-expand"></i>
                     <span>تكبير الشاشة</span>
                 </button>
             </div>
         </div>
 
-        <!-- شريط التنقل بين الدروس الخمسة -->
-        <nav class="bg-royal-950/90 border-t border-white/10 overflow-x-auto">
+        <!-- شريط التنقل بين الدروس الخمسة (يظهر في الآيباد والكمبيوتر فقط) -->
+        <nav class="hidden md:block bg-royal-950/90 border-t border-white/10 overflow-x-auto">
             <div class="container-main max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between gap-2 min-w-max">
                 <button onclick="switchLesson(1)" id="nav-btn-1" class="nav-pill active flex items-center gap-2.5 px-4 py-2.5 rounded-xl font-bold text-base transition cursor-pointer bg-blue-600 text-white shadow-lg shadow-blue-600/30">
                     <span class="w-7 h-7 rounded-lg bg-white/20 flex items-center justify-center text-sm">1</span>
@@ -209,36 +287,30 @@
     </header>
 
     <!-- ==================== المحتوى الرئيسي (Main Container) ==================== -->
-    <main class="container-main max-w-7xl mx-auto px-4 py-6 flex-grow w-full">
+    <main class="container-main max-w-7xl mx-auto px-3 sm:px-4 py-6 flex-grow w-full">
 
         <!-- ===================================================================== -->
         <!-- الدرس الأول: تمثيل البيانات (المحاكاة والتعلم بالاكتشاف التفاعلي)     -->
         <!-- ===================================================================== -->
         <section id="lesson-1" class="tab-content active space-y-6">
             <!-- بطاقة الترويسة والاستراتيجية التربوية -->
-            <div class="bg-gradient-to-l from-blue-700 via-blue-600 to-indigo-700 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden">
+            <div class="bg-gradient-to-l from-blue-700 via-blue-600 to-indigo-700 rounded-3xl p-5 sm:p-6 text-white shadow-xl relative overflow-hidden">
                 <div class="absolute -left-10 -bottom-10 text-white/10 text-9xl pointer-events-none">
                     <i class="fa-solid fa-binary">01</i>
                 </div>
-                <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                        <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold mb-2">
-                            <i class="fa-solid fa-flask text-gold-400"></i>
-                            الاستراتيجية التربوية: المحاكاة والتعلم بالاكتشاف التفاعلي
-                        </span>
-                        <h2 class="text-2xl sm:text-3xl font-black">الدرس الأول: تمثيل البيانات (Data Representation)</h2>
-                        <p class="text-blue-100 mt-1 text-sm sm:text-base max-w-3xl">كيف يفهم الحاسب الأرقام، النصوص، الصور، والفيديو باستخدام لغة الكهرباء (0 و 1)؟ جرب الأدوات التفاعلية أدناه لاكتشاف ذلك بنفسك!</p>
-                    </div>
-                    <button onclick="openQuizModal(1)" class="bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold px-5 py-3 rounded-2xl shadow-lg transition transform hover:scale-105 flex items-center gap-2 self-start md:self-center cursor-pointer shrink-0">
-                        <i class="fa-solid fa-award text-lg"></i>
-                        <span>اختبر فهمك في الدرس 1</span>
-                    </button>
+                <div class="relative z-10">
+                    <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold mb-2">
+                        <i class="fa-solid fa-flask text-gold-400"></i>
+                        الاستراتيجية التربوية: المحاكاة والتعلم بالاكتشاف التفاعلي
+                    </span>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl font-black">الدرس الأول: تمثيل البيانات (Data Representation)</h2>
+                    <p class="text-blue-100 mt-1 text-sm sm:text-base max-w-3xl">كيف يفهم الحاسب الأرقام، النصوص، الصور، والفيديو باستخدام لغة الكهرباء (0 و 1)؟ جرب الأدوات التفاعلية أدناه لاكتشاف ذلك بنفسك!</p>
                 </div>
             </div>
 
             <!-- القسم 1: الجهد الكهربائي والبت والبايت -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 lesson-card">
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200 lesson-card">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-11 h-11 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl">
                             <i class="fa-solid fa-bolt"></i>
@@ -261,13 +333,13 @@
                         </div>
                     </div>
                     <div class="mt-4 bg-slate-100 rounded-xl p-3.5 text-sm text-slate-700 font-medium flex items-center gap-2">
-                        <i class="fa-solid fa-circle-info text-blue-600 text-lg"></i>
+                        <i class="fa-solid fa-circle-info text-blue-600 text-lg shrink-0"></i>
                         <span>كل خانة ثنائية (0 أو 1) تسمى <strong>بت (Bit)</strong>، وكل <strong>8 بت</strong> تشكل <strong>بايت (Byte)</strong> لتمثيل حرف أو رمز واحد.</span>
                     </div>
                 </div>
 
                 <!-- بطاقات الأنظمة العددية الثلاثة -->
-                <div class="lg:col-span-2 bg-white rounded-2xl p-6 shadow-md border border-slate-200 lesson-card">
+                <div class="lg:col-span-2 bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200 lesson-card">
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex items-center gap-3">
                             <div class="w-11 h-11 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl">
@@ -312,7 +384,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 
                 <!-- محول الأنظمة العددية الفوري -->
-                <div class="bg-white rounded-2xl p-6 shadow-md border-t-4 border-blue-600">
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border-t-4 border-blue-600">
                     <h4 class="font-extrabold text-slate-800 flex items-center gap-2 mb-3">
                         <i class="fa-solid fa-calculator text-blue-600"></i>
                         <span>محاكي التحويل بين الأنظمة</span>
@@ -335,7 +407,7 @@
                 </div>
 
                 <!-- محاكي تمثيل النصوص (نظام ASCII) -->
-                <div class="bg-white rounded-2xl p-6 shadow-md border-t-4 border-emerald-600">
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border-t-4 border-emerald-600">
                     <h4 class="font-extrabold text-slate-800 flex items-center gap-2 mb-3">
                         <i class="fa-solid fa-font text-emerald-600"></i>
                         <span>تمثيل النصوص: نظام أسكي (ASCII)</span>
@@ -353,7 +425,7 @@
                 </div>
 
                 <!-- محاكي تمثيل الصور (RGB) والفيديو -->
-                <div class="bg-white rounded-2xl p-6 shadow-md border-t-4 border-rose-500">
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border-t-4 border-rose-500">
                     <h4 class="font-extrabold text-slate-800 flex items-center gap-2 mb-3">
                         <i class="fa-solid fa-palette text-rose-500"></i>
                         <span>تمثيل الصور (RGB) والفيديو</span>
@@ -361,11 +433,11 @@
                     <p class="text-xs text-slate-600 mb-3">
                         تتكون الصورة من نقاط تسمى <strong>البكسلات (Pixels)</strong>، ويُخزن كل بكسل بـ 3 قيم (0 - 255) للأحمر والأخضر والأزرق:
                     </p>
-                    <div class="flex items-center gap-4 mb-3">
-                        <div id="rgb-preview" class="w-24 h-24 rounded-2xl shadow-inner border-2 border-slate-300 shrink-0 flex items-center justify-center text-xs font-bold text-white drop-shadow" style="background-color: rgb(245, 158, 11);">
+                    <div class="flex flex-col sm:flex-row items-center gap-4 mb-3">
+                        <div id="rgb-preview" class="w-full sm:w-24 h-16 sm:h-24 rounded-2xl shadow-inner border-2 border-slate-300 shrink-0 flex items-center justify-center text-xs font-bold text-white drop-shadow" style="background-color: rgb(245, 158, 11);">
                             بكسل واحد
                         </div>
-                        <div class="flex-grow space-y-2 text-sm" dir="ltr">
+                        <div class="w-full flex-grow space-y-2 text-sm" dir="ltr">
                             <div class="flex items-center gap-2">
                                 <span class="w-5 font-bold text-red-600">R:</span>
                                 <input type="range" id="rgb-r" min="0" max="255" value="245" oninput="updateRgbSim()" class="w-full accent-red-600 h-2.5">
@@ -391,10 +463,10 @@
             </div>
 
             <!-- القسم 3: مختبر البوابات المنطقية التفاعلي والقطع الإلكترونية -->
-            <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200">
+            <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200">
                 <div class="flex flex-wrap items-center justify-between gap-4 mb-6 border-b border-slate-100 pb-4">
                     <div>
-                        <h3 class="text-xl font-extrabold text-slate-800 flex items-center gap-2">
+                        <h3 class="text-lg sm:text-xl font-extrabold text-slate-800 flex items-center gap-2">
                             <i class="fa-solid fa-microchip text-indigo-600"></i>
                             <span>مختبر الجبر المنطقي والبوابات المنطقية التفاعلي</span>
                         </h3>
@@ -402,7 +474,7 @@
                     </div>
 
                     <!-- لوحة التحكم في المدخلات A و B -->
-                    <div class="flex items-center gap-4 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-inner">
+                    <div class="flex items-center justify-around sm:justify-start w-full sm:w-auto gap-4 bg-slate-900 text-white px-4 sm:px-5 py-3 rounded-2xl shadow-inner">
                         <div class="flex items-center gap-2">
                             <span class="text-sm font-bold text-slate-300">المدخل A:</span>
                             <button onclick="toggleLogicInput('A')" id="btn-logic-a" class="w-12 h-10 rounded-xl font-mono font-black text-lg transition cursor-pointer bg-emerald-500 text-slate-950 shadow-lg shadow-emerald-500/30">1</button>
@@ -428,7 +500,7 @@
                             <p class="text-xs text-slate-600 mb-3">تستقبل مدخلاً واحداً (A) وتعكس قيمته.</p>
                             <!-- رسم SVG للبوابة -->
                             <div class="bg-white rounded-xl p-2 border border-slate-200 flex items-center justify-center my-2">
-                                <svg width="160" height="60" viewBox="0 0 160 60">
+                                <svg class="max-w-full h-auto" width="160" height="60" viewBox="0 0 160 60">
                                     <line x1="10" y1="30" x2="50" y2="30" stroke="#334155" stroke-width="3"/>
                                     <polygon points="50,12 50,48 95,30" fill="#E0E7FF" stroke="#4F46E5" stroke-width="2.5"/>
                                     <circle cx="101" cy="30" r="5" fill="#fff" stroke="#4F46E5" stroke-width="2.5"/>
@@ -461,7 +533,7 @@
                             </div>
                             <p class="text-xs text-slate-600 mb-3">تعطي (1) فقط إذا كان <strong>كلا المدخلين (1)</strong>.</p>
                             <div class="bg-white rounded-xl p-2 border border-slate-200 flex items-center justify-center my-2">
-                                <svg width="160" height="60" viewBox="0 0 160 60">
+                                <svg class="max-w-full h-auto" width="160" height="60" viewBox="0 0 160 60">
                                     <line x1="10" y1="20" x2="50" y2="20" stroke="#334155" stroke-width="2.5"/>
                                     <line x1="10" y1="40" x2="50" y2="40" stroke="#334155" stroke-width="2.5"/>
                                     <path d="M50,10 L75,10 A20,20 0 0,1 75,50 L50,50 Z" fill="#DBEAFE" stroke="#2563EB" stroke-width="2.5"/>
@@ -495,7 +567,7 @@
                             </div>
                             <p class="text-xs text-slate-600 mb-3">تعطي (0) فقط إذا كان <strong>كلا المدخلين (0)</strong>.</p>
                             <div class="bg-white rounded-xl p-2 border border-slate-200 flex items-center justify-center my-2">
-                                <svg width="160" height="60" viewBox="0 0 160 60">
+                                <svg class="max-w-full h-auto" width="160" height="60" viewBox="0 0 160 60">
                                     <line x1="10" y1="20" x2="55" y2="20" stroke="#334155" stroke-width="2.5"/>
                                     <line x1="10" y1="40" x2="55" y2="40" stroke="#334155" stroke-width="2.5"/>
                                     <path d="M48,10 Q65,30 48,50 Q80,50 100,30 Q80,10 48,10 Z" fill="#D1FAE5" stroke="#059669" stroke-width="2.5"/>
@@ -529,7 +601,7 @@
                             </div>
                             <p class="text-xs text-slate-600 mb-3">تعطي (0) إذا <strong>تشابه المدخلان</strong> و(1) إذا <strong>اختلفا</strong>.</p>
                             <div class="bg-white rounded-xl p-2 border border-slate-200 flex items-center justify-center my-2">
-                                <svg width="160" height="60" viewBox="0 0 160 60">
+                                <svg class="max-w-full h-auto" width="160" height="60" viewBox="0 0 160 60">
                                     <line x1="10" y1="20" x2="48" y2="20" stroke="#334155" stroke-width="2.5"/>
                                     <line x1="10" y1="40" x2="48" y2="40" stroke="#334155" stroke-width="2.5"/>
                                     <path d="M42,10 Q59,30 42,50" fill="none" stroke="#D97706" stroke-width="2.5"/>
@@ -578,6 +650,18 @@
                     </div>
                 </div>
             </div>
+
+            <!-- زر اختبار فهم الدرس في نهاية الدرس قبل الفوتر -->
+            <div class="bg-gradient-to-l from-blue-900 to-indigo-950 rounded-3xl p-6 text-white shadow-xl border-2 border-gold-500/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="text-center sm:text-right">
+                    <h3 class="text-lg sm:text-xl font-black text-gold-400">هل أتممت استكشاف الدرس الأول؟</h3>
+                    <p class="text-xs sm:text-sm text-slate-300 mt-1">قيّم مدى استيعابك لمفاهيم تمثيل البيانات والبوابات المنطقية الآن.</p>
+                </div>
+                <button onclick="openQuizModal(1)" class="bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition transform hover:scale-105 flex items-center gap-2.5 cursor-pointer shrink-0">
+                    <i class="fa-solid fa-award text-xl"></i>
+                    <span>اختبار فهم الدرس</span>
+                </button>
+            </div>
         </section>
 
         <!-- ===================================================================== -->
@@ -585,23 +669,17 @@
         <!-- ===================================================================== -->
         <section id="lesson-2" class="tab-content space-y-6">
             <!-- ترويسة الدرس الثاني -->
-            <div class="bg-gradient-to-l from-teal-700 via-emerald-600 to-cyan-700 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden">
+            <div class="bg-gradient-to-l from-teal-700 via-emerald-600 to-cyan-700 rounded-3xl p-5 sm:p-6 text-white shadow-xl relative overflow-hidden">
                 <div class="absolute -left-8 -bottom-8 text-white/10 text-9xl pointer-events-none">
                     <i class="fa-solid fa-server"></i>
                 </div>
-                <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                        <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold mb-2">
-                            <i class="fa-solid fa-sitemap text-gold-400"></i>
-                            الاستراتيجية التربوية: محطات التعلم التفاعلية والخرائط الذهنية
-                        </span>
-                        <h2 class="text-2xl sm:text-3xl font-black">الدرس الثاني: بنية الحاسب (Computer Architecture)</h2>
-                        <p class="text-emerald-100 mt-1 text-sm sm:text-base max-w-3xl">استكشف معمارية فون نيومان، وتابع رحلة التعليمة داخل المعالج، وقارن بين أنواع الذاكرة ووحدات التخزين.</p>
-                    </div>
-                    <button onclick="openQuizModal(2)" class="bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold px-5 py-3 rounded-2xl shadow-lg transition transform hover:scale-105 flex items-center gap-2 self-start md:self-center cursor-pointer shrink-0">
-                        <i class="fa-solid fa-award text-lg"></i>
-                        <span>اختبر فهمك في الدرس 2</span>
-                    </button>
+                <div class="relative z-10">
+                    <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold mb-2">
+                        <i class="fa-solid fa-sitemap text-gold-400"></i>
+                        الاستراتيجية التربوية: محطات التعلم التفاعلية والخرائط الذهنية
+                    </span>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl font-black">الدرس الثاني: بنية الحاسب (Computer Architecture)</h2>
+                    <p class="text-emerald-100 mt-1 text-sm sm:text-base max-w-3xl">استكشف معمارية فون نيومان، وتابع رحلة التعليمة داخل المعالج، وقارن بين أنواع الذاكرة ووحدات التخزين.</p>
                 </div>
             </div>
 
@@ -640,9 +718,9 @@
             </div>
 
             <!-- مخطط معمارية فون نيومان التفاعلي (1945م) -->
-            <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200">
+            <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200">
                 <div class="mb-5">
-                    <h3 class="text-xl font-extrabold text-slate-800 flex items-center gap-2">
+                    <h3 class="text-lg sm:text-xl font-extrabold text-slate-800 flex items-center gap-2">
                         <i class="fa-solid fa-diagram-project text-teal-600"></i>
                         <span>المخطط التفاعلي لمعمارية فون نيومان (1945م)</span>
                     </h3>
@@ -651,12 +729,12 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
                     <!-- الرسم التفاعلي -->
-                    <div class="lg:col-span-7 bg-slate-900 rounded-2xl p-5 text-white relative">
+                    <div class="lg:col-span-7 bg-slate-900 rounded-2xl p-4 sm:p-5 text-white relative">
                         <div class="text-center text-xs text-slate-400 mb-3 font-bold">تتصل جميع الوحدات معاً عبر <button onclick="showVonNeumannInfo('bus')" class="text-gold-400 underline hover:text-gold-300 cursor-pointer font-extrabold">النواقل (System Bus)</button></div>
                         
-                        <div class="grid grid-cols-3 gap-3 items-center">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 items-center">
                             <!-- وحدات الإدخال -->
-                            <button onclick="showVonNeumannInfo('input')" class="vn-node bg-blue-600/30 hover:bg-blue-600 border-2 border-blue-400 rounded-2xl p-4 text-center transition cursor-pointer">
+                            <button onclick="showVonNeumannInfo('input')" class="vn-node bg-blue-600/30 hover:bg-blue-600 border-2 border-blue-400 rounded-2xl p-3.5 sm:p-4 text-center transition cursor-pointer">
                                 <i class="fa-solid fa-keyboard text-2xl text-blue-300 mb-2"></i>
                                 <div class="font-extrabold text-sm">وحدات الإدخال</div>
                                 <div class="text-[10px] text-blue-200 mt-1">Input Units</div>
@@ -676,7 +754,7 @@
                             </div>
 
                             <!-- وحدات الإخراج -->
-                            <button onclick="showVonNeumannInfo('output')" class="vn-node bg-emerald-600/30 hover:bg-emerald-600 border-2 border-emerald-400 rounded-2xl p-4 text-center transition cursor-pointer">
+                            <button onclick="showVonNeumannInfo('output')" class="vn-node bg-emerald-600/30 hover:bg-emerald-600 border-2 border-emerald-400 rounded-2xl p-3.5 sm:p-4 text-center transition cursor-pointer">
                                 <i class="fa-solid fa-desktop text-2xl text-emerald-300 mb-2"></i>
                                 <div class="font-extrabold text-sm">وحدات الإخراج</div>
                                 <div class="text-[10px] text-emerald-200 mt-1">Output Units</div>
@@ -699,7 +777,7 @@
                     </div>
 
                     <!-- بطاقة الشرح التفصيلية -->
-                    <div id="vn-detail-card" class="lg:col-span-5 bg-gradient-to-br from-teal-50 to-slate-50 border-2 border-teal-200 rounded-2xl p-6 min-h-[260px] flex flex-col justify-center">
+                    <div id="vn-detail-card" class="lg:col-span-5 bg-gradient-to-br from-teal-50 to-slate-50 border-2 border-teal-200 rounded-2xl p-5 sm:p-6 min-h-[240px] flex flex-col justify-center">
                         <span class="inline-block w-fit bg-teal-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">بطاقة المحطة التعليمية</span>
                         <h4 id="vn-title" class="text-xl font-black text-slate-800 mb-2">وحدة المعالجة المركزية (CPU)</h4>
                         <p id="vn-desc" class="text-sm text-slate-600 leading-relaxed mb-4">
@@ -714,10 +792,10 @@
             </div>
 
             <!-- محاكاة دورة الجلب والتنفيذ (Fetch-Execute Cycle) -->
-            <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200">
+            <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200">
                 <div class="flex flex-wrap items-center justify-between gap-4 mb-5">
                     <div>
-                        <h3 class="text-xl font-extrabold text-slate-800 flex items-center gap-2">
+                        <h3 class="text-lg sm:text-xl font-extrabold text-slate-800 flex items-center gap-2">
                             <i class="fa-solid fa-rotate text-amber-500"></i>
                             <span>محاكاة دورة الجلب والتنفيذ (Fetch-Execute Cycle)</span>
                         </h3>
@@ -729,7 +807,7 @@
                     </button>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-5 gap-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
                     <div id="fe-step-1" class="fe-card border-2 border-teal-600 bg-teal-50 rounded-2xl p-4 transition-all">
                         <div class="w-8 h-8 rounded-full bg-teal-600 text-white font-black flex items-center justify-center text-sm mb-2">1</div>
                         <h5 class="font-extrabold text-slate-800 text-sm">إحضار التعليمة</h5>
@@ -750,7 +828,7 @@
                         <h5 class="font-extrabold text-slate-800 text-sm">تنفيذ التعليمة</h5>
                         <p class="text-xs text-slate-600 mt-1">تقوم وحدة الحساب والمنطق (ALU) بإجراء العملية المطلوبة.</p>
                     </div>
-                    <div id="fe-step-5" class="fe-card border-2 border-slate-200 bg-slate-50 rounded-2xl p-4 opacity-60 transition-all">
+                    <div id="fe-step-5" class="fe-card border-2 border-slate-200 bg-slate-50 rounded-2xl p-4 opacity-60 transition-all sm:col-span-2 lg:col-span-1">
                         <div class="w-8 h-8 rounded-full bg-slate-400 text-white font-black flex items-center justify-center text-sm mb-2">5</div>
                         <h5 class="font-extrabold text-slate-800 text-sm">حفظ النتائج</h5>
                         <p class="text-xs text-slate-600 mt-1">تخزين ناتج العملية في الذاكرة الرئيسية والعودة للخطوة 1.</p>
@@ -761,12 +839,12 @@
             <!-- مقارنة RAM و ROM + أجهزة التخزين الثانوية -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- مقارنة RAM و ROM -->
-                <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200">
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200">
                     <h4 class="font-extrabold text-slate-800 text-lg mb-4 flex items-center gap-2">
                         <i class="fa-solid fa-scale-balanced text-purple-600"></i>
                         <span>مقارنة الذاكرة الرئيسية: RAM مقابل ROM</span>
                     </h4>
-                    <div class="overflow-hidden rounded-xl border border-slate-200">
+                    <div class="overflow-x-auto rounded-xl border border-slate-200">
                         <table class="w-full text-right text-xs sm:text-sm">
                             <thead class="bg-slate-800 text-white">
                                 <tr>
@@ -802,7 +880,7 @@
                 </div>
 
                 <!-- أجهزة التخزين الثانوية -->
-                <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 space-y-4">
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200 space-y-4">
                     <h4 class="font-extrabold text-slate-800 text-lg flex items-center gap-2">
                         <i class="fa-solid fa-hard-drive text-teal-600"></i>
                         <span>أجهزة التخزين الثانوية (Secondary Storage)</span>
@@ -835,6 +913,18 @@
                     </div>
                 </div>
             </div>
+
+            <!-- زر اختبار فهم الدرس في نهاية الدرس قبل الفوتر -->
+            <div class="bg-gradient-to-l from-teal-900 to-emerald-950 rounded-3xl p-6 text-white shadow-xl border-2 border-gold-500/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="text-center sm:text-right">
+                    <h3 class="text-lg sm:text-xl font-black text-gold-400">هل أتممت استكشاف الدرس الثاني؟</h3>
+                    <p class="text-xs sm:text-sm text-emerald-100 mt-1">قيّم مدى استيعابك لمعمارية فون نيومان ووحدات المعالجة والذاكرة الآن.</p>
+                </div>
+                <button onclick="openQuizModal(2)" class="bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition transform hover:scale-105 flex items-center gap-2.5 cursor-pointer shrink-0">
+                    <i class="fa-solid fa-award text-xl"></i>
+                    <span>اختبار فهم الدرس</span>
+                </button>
+            </div>
         </section>
 
         <!-- ===================================================================== -->
@@ -842,28 +932,22 @@
         <!-- ===================================================================== -->
         <section id="lesson-3" class="tab-content space-y-6">
             <!-- ترويسة الدرس الثالث -->
-            <div class="bg-gradient-to-l from-purple-700 via-violet-600 to-indigo-700 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden">
+            <div class="bg-gradient-to-l from-purple-700 via-violet-600 to-indigo-700 rounded-3xl p-5 sm:p-6 text-white shadow-xl relative overflow-hidden">
                 <div class="absolute -left-8 -bottom-8 text-white/10 text-9xl pointer-events-none">
                     <i class="fa-brands fa-windows"></i>
                 </div>
-                <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                        <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold mb-2">
-                            <i class="fa-solid fa-layer-group text-gold-400"></i>
-                            الاستراتيجية التربوية: التصنيف والفرز الذكي ودورة الحياة
-                        </span>
-                        <h2 class="text-2xl sm:text-3xl font-black">الدرس الثالث: أنظمة التشغيل (Operating Systems)</h2>
-                        <p class="text-purple-100 mt-1 text-sm sm:text-base max-w-3xl">صنّف البرمجيات بذكاء، واكتشف كيف يدير نظام التشغيل الذاكرة والعمليات والأجهزة والملفات.</p>
-                    </div>
-                    <button onclick="openQuizModal(3)" class="bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold px-5 py-3 rounded-2xl shadow-lg transition transform hover:scale-105 flex items-center gap-2 self-start md:self-center cursor-pointer shrink-0">
-                        <i class="fa-solid fa-award text-lg"></i>
-                        <span>اختبر فهمك في الدرس 3</span>
-                    </button>
+                <div class="relative z-10">
+                    <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold mb-2">
+                        <i class="fa-solid fa-layer-group text-gold-400"></i>
+                        الاستراتيجية التربوية: التصنيف والفرز الذكي ودورة الحياة
+                    </span>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl font-black">الدرس الثالث: أنظمة التشغيل (Operating Systems)</h2>
+                    <p class="text-purple-100 mt-1 text-sm sm:text-base max-w-3xl">صنّف البرمجيات بذكاء، واكتشف كيف يدير نظام التشغيل الذاكرة والعمليات والأجهزة والملفات.</p>
                 </div>
             </div>
 
             <!-- نشاط التصنيف الذكي للبرمجيات -->
-            <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200">
+            <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200">
                 <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
                     <div>
                         <h3 class="text-lg font-extrabold text-slate-800 flex items-center gap-2">
@@ -895,7 +979,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 
                 <!-- 1. إدارة الذاكرة -->
-                <div class="bg-white rounded-2xl p-6 shadow-md border-t-4 border-purple-600">
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border-t-4 border-purple-600">
                     <h4 class="font-extrabold text-slate-800 text-base flex items-center gap-2 mb-2">
                         <span class="w-7 h-7 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center text-xs font-black">1</span>
                         <span>إدارة الذاكرة (Memory Management)</span>
@@ -903,7 +987,7 @@
                     <p class="text-xs text-slate-600 leading-relaxed mb-3">
                         يتتبع نظام التشغيل مواقع البرامج في الذاكرة ويحول العناوين المنطقية (التي يستخدمها البرنامج) إلى عناوين حقيقية في الذاكرة عبر عملية تسمى <strong>ربط العناوين (Address Binding)</strong>.
                     </p>
-                    <div class="bg-slate-900 text-white p-3 rounded-xl flex items-center justify-between text-xs font-mono">
+                    <div class="bg-slate-900 text-white p-3 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono">
                         <span class="bg-blue-500/20 border border-blue-400 px-2.5 py-1 rounded text-blue-300">عنوان منطقي (Logical)</span>
                         <span class="text-gold-400 font-sans font-bold"><i class="fa-solid fa-arrow-left mx-1"></i> Address Binding <i class="fa-solid fa-arrow-left mx-1"></i></span>
                         <span class="bg-emerald-500/20 border border-emerald-400 px-2.5 py-1 rounded text-emerald-300">عنوان حقيقي (Physical)</span>
@@ -911,7 +995,7 @@
                 </div>
 
                 <!-- 3. إدارة أجهزة الإدخال والإخراج -->
-                <div class="bg-white rounded-2xl p-6 shadow-md border-t-4 border-indigo-600">
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border-t-4 border-indigo-600">
                     <h4 class="font-extrabold text-slate-800 text-base flex items-center gap-2 mb-2">
                         <span class="w-7 h-7 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center text-xs font-black">3</span>
                         <span>إدارة أجهزة الإدخال والإخراج (I/O Management)</span>
@@ -919,7 +1003,7 @@
                     <p class="text-xs text-slate-600 leading-relaxed mb-3">
                         يتحكم نظام التشغيل في كافة الملحقات المتصلة بالحاسب (طابعة، ماسح ضوئي، شاشة) ويتواصل معها من خلال برامج وسيطة متخصصة تسمى <strong>برامج تشغيل الأجهزة (Device Drivers)</strong>.
                     </p>
-                    <div class="bg-indigo-50 border border-indigo-200 p-3 rounded-xl flex items-center justify-around text-xs font-bold text-indigo-900">
+                    <div class="bg-indigo-50 border border-indigo-200 p-3 rounded-xl flex flex-wrap items-center justify-around gap-2 text-xs font-bold text-indigo-900">
                         <span><i class="fa-brands fa-windows text-lg ml-1"></i> نظام التشغيل</span>
                         <i class="fa-solid fa-arrows-left-right text-indigo-400"></i>
                         <span class="bg-white px-2.5 py-1 rounded-lg shadow-sm border border-indigo-200">Device Driver</span>
@@ -929,7 +1013,7 @@
                 </div>
 
                 <!-- 2. إدارة العمليات ودورة حياتها التفاعلية -->
-                <div class="lg:col-span-2 bg-white rounded-2xl p-6 shadow-md border-t-4 border-amber-500">
+                <div class="lg:col-span-2 bg-white rounded-2xl p-5 sm:p-6 shadow-md border-t-4 border-amber-500">
                     <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
                         <div>
                             <h4 class="font-extrabold text-slate-800 text-base flex items-center gap-2">
@@ -938,12 +1022,12 @@
                             </h4>
                             <p class="text-xs text-slate-500 mt-0.5">انقر على الأزرار لمحاكاة انتقال البرنامج قيد التنفيذ بين حالات المعالج الخمس:</p>
                         </div>
-                        <div class="flex gap-2">
-                            <button onclick="setProcessState('new')" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-200 hover:bg-slate-300 cursor-pointer">1. جديدة</button>
-                            <button onclick="setProcessState('ready')" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-blue-100 text-blue-800 hover:bg-blue-200 cursor-pointer">2. جاهزة</button>
-                            <button onclick="setProcessState('running')" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-100 text-emerald-800 hover:bg-emerald-200 cursor-pointer">3. تشغيل</button>
-                            <button onclick="setProcessState('waiting')" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-100 text-amber-800 hover:bg-amber-200 cursor-pointer">4. انتظار</button>
-                            <button onclick="setProcessState('terminated')" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-rose-100 text-rose-800 hover:bg-rose-200 cursor-pointer">5. إنهاء</button>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="setProcessState('new')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-200 hover:bg-slate-300 cursor-pointer">1. جديدة</button>
+                            <button onclick="setProcessState('ready')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-blue-100 text-blue-800 hover:bg-blue-200 cursor-pointer">2. جاهزة</button>
+                            <button onclick="setProcessState('running')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-100 text-emerald-800 hover:bg-emerald-200 cursor-pointer">3. تشغيل</button>
+                            <button onclick="setProcessState('waiting')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-amber-100 text-amber-800 hover:bg-amber-200 cursor-pointer">4. انتظار</button>
+                            <button onclick="setProcessState('terminated')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-rose-100 text-rose-800 hover:bg-rose-200 cursor-pointer">5. إنهاء</button>
                         </div>
                     </div>
 
@@ -969,36 +1053,36 @@
                             <p class="text-[11px] text-slate-500 mt-1">اكتمل التنفيذ وأُغلقت.</p>
                         </div>
                     </div>
-                    <div id="proc-status-msg" class="mt-3 text-center text-xs font-bold text-emerald-700 bg-emerald-50 py-2 rounded-lg">
+                    <div id="proc-status-msg" class="mt-3 text-center text-xs font-bold text-emerald-700 bg-emerald-50 p-2.5 rounded-lg">
                         الحالة الحالية: العملية في وضع (التشغيل Running) وتُنفذ تعليماتها داخل المعالج.
                     </div>
                 </div>
 
                 <!-- 4. مستكشف شجرة المجلدات التفاعلي -->
-                <div class="lg:col-span-2 bg-white rounded-2xl p-6 shadow-md border-t-4 border-teal-600">
+                <div class="lg:col-span-2 bg-white rounded-2xl p-5 sm:p-6 shadow-md border-t-4 border-teal-600">
                     <h4 class="font-extrabold text-slate-800 text-base flex items-center gap-2 mb-2">
                         <span class="w-7 h-7 rounded-lg bg-teal-100 text-teal-700 flex items-center justify-center text-xs font-black">4</span>
                         <span>إدارة الملفات والمجلدات: الهيكلية الشجرية (Tree Structure)</span>
                     </h4>
                     <p class="text-xs text-slate-600 mb-4">ينظم نظام التشغيل البيانات على الأقراص الثانوية في هيكلية شجرية تبدأ من <strong>المجلد الجذري (Root Directory)</strong> وتنتهي بالمجلدات الفرعية والملفات:</p>
                     
-                    <div class="bg-slate-900 text-slate-200 p-4 rounded-2xl font-mono text-xs sm:text-sm space-y-2">
+                    <div class="bg-slate-900 text-slate-200 p-4 rounded-2xl font-mono text-xs sm:text-sm space-y-2 overflow-x-auto">
                         <div class="flex items-center gap-2 text-gold-400 font-bold">
                             <i class="fa-solid fa-hard-drive"></i>
                             <span>C:\ (المجلد الجذري - Root Directory)</span>
                         </div>
-                        <div class="pr-6 space-y-2 border-r-2 border-slate-700 mr-2">
+                        <div class="pr-4 sm:pr-6 space-y-2 border-r-2 border-slate-700 mr-2">
                             <div>
                                 <button onclick="toggleFolder('folder-school')" class="flex items-center gap-2 text-sky-400 hover:text-sky-300 font-bold cursor-pointer">
                                     <i class="fa-solid fa-folder-open"></i>
                                     <span>المقررات_الدراسية (مجلد رئيسي)</span>
                                 </button>
-                                <div id="folder-school" class="pr-6 mt-2 space-y-1.5 border-r-2 border-slate-700 mr-2">
+                                <div id="folder-school" class="pr-4 sm:pr-6 mt-2 space-y-1.5 border-r-2 border-slate-700 mr-2">
                                     <div class="flex items-center gap-2 text-emerald-400">
                                         <i class="fa-solid fa-folder"></i>
                                         <span>تقنية_رقمية_1-1 (مجلد فرعي - Subdirectory)</span>
                                     </div>
-                                    <div class="pr-6 space-y-1 text-slate-300 text-xs">
+                                    <div class="pr-4 sm:pr-6 space-y-1 text-slate-300 text-xs">
                                         <div><i class="fa-solid fa-file-pdf text-rose-400 ml-1"></i> الوحدة_الأولى.pdf (ملف)</div>
                                         <div><i class="fa-solid fa-file-code text-amber-400 ml-1"></i> مشروع_الدرس.html (ملف)</div>
                                     </div>
@@ -1008,6 +1092,18 @@
                     </div>
                 </div>
             </div>
+
+            <!-- زر اختبار فهم الدرس في نهاية الدرس قبل الفوتر -->
+            <div class="bg-gradient-to-l from-purple-900 to-indigo-950 rounded-3xl p-6 text-white shadow-xl border-2 border-gold-500/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="text-center sm:text-right">
+                    <h3 class="text-lg sm:text-xl font-black text-gold-400">هل أتممت استكشاف الدرس الثالث؟</h3>
+                    <p class="text-xs sm:text-sm text-purple-100 mt-1">قيّم مدى استيعابك لمهام أنظمة التشغيل وإدارة الذاكرة والعمليات الآن.</p>
+                </div>
+                <button onclick="openQuizModal(3)" class="bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition transform hover:scale-105 flex items-center gap-2.5 cursor-pointer shrink-0">
+                    <i class="fa-solid fa-award text-xl"></i>
+                    <span>اختبار فهم الدرس</span>
+                </button>
+            </div>
         </section>
 
         <!-- ===================================================================== -->
@@ -1015,28 +1111,22 @@
         <!-- ===================================================================== -->
         <section id="lesson-4" class="tab-content space-y-6">
             <!-- ترويسة الدرس الرابع -->
-            <div class="bg-gradient-to-l from-cyan-700 via-sky-600 to-blue-700 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden">
+            <div class="bg-gradient-to-l from-cyan-700 via-sky-600 to-blue-700 rounded-3xl p-5 sm:p-6 text-white shadow-xl relative overflow-hidden">
                 <div class="absolute -left-8 -bottom-8 text-white/10 text-9xl pointer-events-none">
                     <i class="fa-solid fa-network-wired"></i>
                 </div>
-                <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                        <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold mb-2">
-                            <i class="fa-solid fa-route text-gold-400"></i>
-                            الاستراتيجية التربوية: رحلة البيانات والسيناريو التفاعلي
-                        </span>
-                        <h2 class="text-2xl sm:text-3xl font-black">الدرس الرابع: أساسيات الشبكات (Networking Fundamentals)</h2>
-                        <p class="text-sky-100 mt-1 text-sm sm:text-base max-w-3xl">شاهد كيف تتقطع الرسائل إلى حزم وتسافر عبر الموجهات، وافحص عناوين IP، وقارن طبقات الشبكة وجدران الحماية.</p>
-                    </div>
-                    <button onclick="openQuizModal(4)" class="bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold px-5 py-3 rounded-2xl shadow-lg transition transform hover:scale-105 flex items-center gap-2 self-start md:self-center cursor-pointer shrink-0">
-                        <i class="fa-solid fa-award text-lg"></i>
-                        <span>اختبر فهمك في الدرس 4</span>
-                    </button>
+                <div class="relative z-10">
+                    <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold mb-2">
+                        <i class="fa-solid fa-route text-gold-400"></i>
+                        الاستراتيجية التربوية: رحلة البيانات والسيناريو التفاعلي
+                    </span>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl font-black">الدرس الرابع: أساسيات الشبكات (Networking Fundamentals)</h2>
+                    <p class="text-sky-100 mt-1 text-sm sm:text-base max-w-3xl">شاهد كيف تتقطع الرسائل إلى حزم وتسافر عبر الموجهات، وافحص عناوين IP، وقارن طبقات الشبكة وجدران الحماية.</p>
                 </div>
             </div>
 
             <!-- محاكاة تحويل الحزمة (Packet Switching) والموجهات -->
-            <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200">
+            <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200">
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
                     <div>
                         <h3 class="text-lg font-extrabold text-slate-800 flex items-center gap-2">
@@ -1052,13 +1142,13 @@
                 </div>
 
                 <!-- مسرح المحاكاة -->
-                <div class="bg-slate-900 rounded-2xl p-5 text-white relative overflow-hidden">
-                    <div class="grid grid-cols-3 gap-4 items-center text-center relative z-10">
+                <div class="bg-slate-900 rounded-2xl p-4 sm:p-5 text-white relative overflow-hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center text-center relative z-10">
                         <!-- المرسل -->
                         <div class="bg-slate-800 border border-slate-700 p-4 rounded-2xl">
                             <i class="fa-solid fa-laptop text-3xl text-sky-400 mb-2"></i>
                             <div class="font-bold text-sm">جهاز المرسل</div>
-                            <div id="pkt-sender-boxes" class="flex justify-center gap-1 mt-2">
+                            <div id="pkt-sender-boxes" class="flex flex-wrap justify-center gap-1 mt-2">
                                 <span class="bg-gold-500 text-slate-950 text-[10px] font-black px-1.5 py-0.5 rounded">حزمة 1</span>
                                 <span class="bg-emerald-400 text-slate-950 text-[10px] font-black px-1.5 py-0.5 rounded">حزمة 2</span>
                                 <span class="bg-sky-400 text-slate-950 text-[10px] font-black px-1.5 py-0.5 rounded">حزمة 3</span>
@@ -1090,7 +1180,7 @@
 
             <!-- عناوين الشبكة (HostName, IP, DNS) + فاحص IP التفاعلي -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div class="lg:col-span-2 bg-white rounded-2xl p-6 shadow-md border border-slate-200 space-y-4">
+                <div class="lg:col-span-2 bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200 space-y-4">
                     <h4 class="font-extrabold text-slate-800 text-lg flex items-center gap-2">
                         <i class="fa-solid fa-address-book text-blue-600"></i>
                         <span>عناوين الشبكة ونظام اسم المجال (DNS)</span>
@@ -1112,7 +1202,7 @@
                 </div>
 
                 <!-- فاحص عنوان IP التفاعلي -->
-                <div class="bg-white rounded-2xl p-6 shadow-md border-t-4 border-sky-600">
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border-t-4 border-sky-600">
                     <h4 class="font-extrabold text-slate-800 text-base mb-2 flex items-center gap-2">
                         <i class="fa-solid fa-shield-check text-sky-600"></i>
                         <span>فاحص صحة عنوان IP التفاعلي</span>
@@ -1131,9 +1221,9 @@
             <!-- مقارنة OSI و TCP/IP + مقارنة TCP و UDP -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- طبقات OSI (7) و TCP/IP (4) -->
-                <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200">
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200">
                     <h4 class="font-extrabold text-slate-800 text-base mb-4">نماذج الاتصال: OSI (7 طبقات) مقابل TCP/IP (4 طبقات)</h4>
-                    <div class="grid grid-cols-2 gap-4 text-center text-xs">
+                    <div class="grid grid-cols-2 gap-3 sm:gap-4 text-center text-xs">
                         <div>
                             <div class="bg-indigo-900 text-white font-bold py-2 rounded-t-xl">نموذج OSI (7 طبقات)</div>
                             <div class="divide-y divide-indigo-100 border border-indigo-200 rounded-b-xl font-bold text-indigo-950">
@@ -1163,7 +1253,7 @@
                     <!-- TCP vs UDP -->
                     <div class="bg-white rounded-2xl p-5 shadow-md border border-slate-200">
                         <h4 class="font-extrabold text-slate-800 text-sm mb-3">بروتوكولات طبقة النقل: TCP مقابل UDP</h4>
-                        <div class="grid grid-cols-2 gap-3 text-xs">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                             <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl">
                                 <div class="font-black text-emerald-800 text-sm mb-1">بروتوكول TCP</div>
                                 <p class="text-emerald-900">بطيء نسبياً ولكنه <strong>موثوق</strong>؛ يضمن وصول كافة الحزم بترتيبها الصحيح (مثل تصفح الويب).</p>
@@ -1192,7 +1282,7 @@
             </div>
 
             <!-- جدار الحماية وأجياله الثلاثة -->
-            <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg">
+            <div class="bg-slate-900 text-white rounded-2xl p-5 sm:p-6 shadow-lg">
                 <h4 class="font-extrabold text-gold-400 text-lg flex items-center gap-2 mb-2">
                     <i class="fa-solid fa-fire-flame-curved text-rose-500"></i>
                     <span>جدار الحماية (Firewall) وأجياله الثلاثة</span>
@@ -1213,6 +1303,18 @@
                     </div>
                 </div>
             </div>
+
+            <!-- زر اختبار فهم الدرس في نهاية الدرس قبل الفوتر -->
+            <div class="bg-gradient-to-l from-sky-900 to-blue-950 rounded-3xl p-6 text-white shadow-xl border-2 border-gold-500/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="text-center sm:text-right">
+                    <h3 class="text-lg sm:text-xl font-black text-gold-400">هل أتممت استكشاف الدرس الرابع؟</h3>
+                    <p class="text-xs sm:text-sm text-sky-100 mt-1">قيّم مدى استيعابك لأساسيات الشبكات وطبقات الاتصال والبروتوكولات الآن.</p>
+                </div>
+                <button onclick="openQuizModal(4)" class="bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition transform hover:scale-105 flex items-center gap-2.5 cursor-pointer shrink-0">
+                    <i class="fa-solid fa-award text-xl"></i>
+                    <span>اختبار فهم الدرس</span>
+                </button>
+            </div>
         </section>
 
         <!-- ===================================================================== -->
@@ -1220,30 +1322,24 @@
         <!-- ===================================================================== -->
         <section id="lesson-5" class="tab-content space-y-6">
             <!-- ترويسة الدرس الخامس -->
-            <div class="bg-gradient-to-l from-amber-600 via-orange-600 to-rose-600 rounded-3xl p-6 text-white shadow-xl relative overflow-hidden">
+            <div class="bg-gradient-to-l from-amber-600 via-orange-600 to-rose-600 rounded-3xl p-5 sm:p-6 text-white shadow-xl relative overflow-hidden">
                 <div class="absolute -left-8 -bottom-8 text-white/10 text-9xl pointer-events-none">
                     <i class="fa-solid fa-globe"></i>
                 </div>
-                <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                        <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold mb-2">
-                            <i class="fa-solid fa-scale-unbalanced text-gold-400"></i>
-                            الاستراتيجية التربوية: التفكير الناقد والميزان التفاعلي
-                        </span>
-                        <h2 class="text-2xl sm:text-3xl font-black">الدرس الخامس: تقنية المعلومات والاتصالات والمجتمع</h2>
-                        <p class="text-amber-100 mt-1 text-sm sm:text-base max-w-3xl">حلّل أثر التقنية على الأعمال والوظائف، واكتشف المدفوعات الرقمية والبلوك تشين، وناقش حلول الفجوة الرقمية.</p>
-                    </div>
-                    <button onclick="openQuizModal(5)" class="bg-royal-950 hover:bg-royal-800 text-gold-400 border border-gold-400/50 font-extrabold px-5 py-3 rounded-2xl shadow-lg transition transform hover:scale-105 flex items-center gap-2 self-start md:self-center cursor-pointer shrink-0">
-                        <i class="fa-solid fa-award text-lg"></i>
-                        <span>اختبر فهمك في الدرس 5</span>
-                    </button>
+                <div class="relative z-10">
+                    <span class="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold mb-2">
+                        <i class="fa-solid fa-scale-unbalanced text-gold-400"></i>
+                        الاستراتيجية التربوية: التفكير الناقد والميزان التفاعلي
+                    </span>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl font-black">الدرس الخامس: تقنية المعلومات والاتصالات والمجتمع</h2>
+                    <p class="text-amber-100 mt-1 text-sm sm:text-base max-w-3xl">حلّل أثر التقنية على الأعمال والوظائف، واكتشف المدفوعات الرقمية والبلوك تشين، وناقش حلول الفجوة الرقمية.</p>
                 </div>
             </div>
 
             <!-- ميزان قطاع الأعمال والوظائف -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- إيجابيات وتحديات التقنية في قطاع الأعمال -->
-                <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200">
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200">
                     <h3 class="text-lg font-extrabold text-slate-800 flex items-center gap-2 mb-4">
                         <i class="fa-solid fa-briefcase text-amber-600"></i>
                         <span>ميزان التقنية في قطاع الأعمال</span>
@@ -1273,7 +1369,7 @@
                 </div>
 
                 <!-- مصفوفة الوظائف المتأثرة -->
-                <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200">
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200">
                     <h3 class="text-lg font-extrabold text-slate-800 flex items-center gap-2 mb-3">
                         <i class="fa-solid fa-user-tie text-blue-600"></i>
                         <span>أثر التقنية على سوق العمل والوظائف</span>
@@ -1306,7 +1402,7 @@
             <!-- تسهيل الحياة + المدفوعات الرقمية + التخزين السحابي -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- منصات تسهيل الحياة -->
-                <div class="bg-white rounded-2xl p-6 shadow-md border-t-4 border-orange-500">
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border-t-4 border-orange-500">
                     <h4 class="font-extrabold text-slate-800 text-base mb-3 flex items-center gap-2">
                         <i class="fa-solid fa-wand-magic-sparkles text-orange-500"></i>
                         <span>التقنية وتسهيل الحياة</span>
@@ -1319,7 +1415,7 @@
                 </div>
 
                 <!-- المدفوعات الرقمية ونظام الريبل -->
-                <div class="bg-white rounded-2xl p-6 shadow-md border-t-4 border-emerald-500">
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border-t-4 border-emerald-500">
                     <h4 class="font-extrabold text-slate-800 text-base mb-3 flex items-center gap-2">
                         <i class="fa-solid fa-wallet text-emerald-600"></i>
                         <span>تطور مدفوعات الأموال</span>
@@ -1333,7 +1429,7 @@
                 </div>
 
                 <!-- التخزين السحابي والخصوصية -->
-                <div class="bg-white rounded-2xl p-6 shadow-md border-t-4 border-sky-500">
+                <div class="bg-white rounded-2xl p-5 sm:p-6 shadow-md border-t-4 border-sky-500">
                     <h4 class="font-extrabold text-slate-800 text-base mb-3 flex items-center gap-2">
                         <i class="fa-solid fa-cloud-arrow-up text-sky-500"></i>
                         <span>التخزين السحابي (Cloud Storage)</span>
@@ -1349,9 +1445,9 @@
             </div>
 
             <!-- خريطة الفجوة الرقمية والعوامل الستة -->
-            <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-2xl p-6 shadow-lg">
+            <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-2xl p-5 sm:p-6 shadow-lg">
                 <div class="mb-4">
-                    <h3 class="text-xl font-extrabold text-gold-400 flex items-center gap-2">
+                    <h3 class="text-lg sm:text-xl font-extrabold text-gold-400 flex items-center gap-2">
                         <i class="fa-solid fa-bridge-water text-sky-400"></i>
                         <span>الفجوة الرقمية (Digital Divide) والعوامل المؤثرة عليها</span>
                     </h3>
@@ -1387,41 +1483,59 @@
                     </div>
                 </div>
             </div>
+
+            <!-- زر اختبار فهم الدرس في نهاية الدرس قبل الفوتر -->
+            <div class="bg-gradient-to-l from-orange-900 to-rose-950 rounded-3xl p-6 text-white shadow-xl border-2 border-gold-500/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="text-center sm:text-right">
+                    <h3 class="text-lg sm:text-xl font-black text-gold-400">هل أتممت استكشاف الدرس الخامس؟</h3>
+                    <p class="text-xs sm:text-sm text-amber-100 mt-1">قيّم مدى استيعابك لأثر التقنية على المجتمع وسوق العمل والفجوة الرقمية الآن.</p>
+                </div>
+                <button onclick="openQuizModal(5)" class="bg-gold-500 hover:bg-gold-400 text-royal-950 font-extrabold px-6 py-3.5 rounded-2xl shadow-lg transition transform hover:scale-105 flex items-center gap-2.5 cursor-pointer shrink-0">
+                    <i class="fa-solid fa-award text-xl"></i>
+                    <span>اختبار فهم الدرس</span>
+                </button>
+            </div>
         </section>
 
     </main>
 
+    <!-- ==================== زر الواتساب العائم بالأسفل ==================== -->
+    <a href="https://wa.me/966565588869" target="_blank" rel="noopener noreferrer" aria-label="تواصل عبر واتساب" title="تواصل عبر واتساب" class="fixed bottom-5 left-5 z-40 w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#1ebe5d] text-white shadow-2xl border-2 border-white flex items-center justify-center text-3xl transition-transform hover:scale-110 animate-pulse-slow">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
     <!-- ==================== التذييل السفلي (Footer) ==================== -->
-   <footer class="bg-royal-950 text-slate-400 py-6 border-t border-slate-800 text-center text-xs mt-auto">
+    <footer class="bg-royal-950 text-slate-400 py-6 border-t border-slate-800 text-center text-xs mt-auto">
         <div class="container-main max-w-7xl mx-auto px-4 space-y-2">
             <p class="font-bold text-slate-300">جميع الحقوق محفوظة © <br>يوسف الحامد | Vanta Voids</p>
             <p>بيشة | المملكة العربية السعودية</p>
+        </div>
     </footer>
 
     <!-- ==================== نافذة التقويم التفاعلي (Quiz Modal) ==================== -->
     <div id="quiz-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border-4 border-gold-500 animate-[fadeIn_0.3s_ease-out]">
-            <div class="bg-royal-900 text-white px-6 py-4 flex items-center justify-between">
+            <div class="bg-royal-900 text-white px-5 sm:px-6 py-4 flex items-center justify-between">
                 <div class="flex items-center gap-3">
                     <i class="fa-solid fa-trophy text-gold-400 text-2xl"></i>
-                    <h3 id="quiz-modal-title" class="font-extrabold text-xl">اختبر فهمك</h3>
+                    <h3 id="quiz-modal-title" class="font-extrabold text-lg sm:text-xl">اختبر فهمك</h3>
                 </div>
                 <button onclick="closeQuizModal()" class="text-slate-300 hover:text-white text-2xl cursor-pointer px-2">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
             
-            <div id="quiz-body" class="p-6 max-h-[72vh] overflow-y-auto space-y-5">
+            <div id="quiz-body" class="p-4 sm:p-6 max-h-[70vh] overflow-y-auto space-y-5">
                 <!-- يتم توليد الأسئلة هنا برمجياً مع التغذية الراجعة الفورية -->
             </div>
 
-            <div class="bg-slate-100 px-6 py-4 flex flex-wrap items-center justify-between gap-3 border-t border-slate-200">
-                <div id="quiz-score-badge" class="font-extrabold text-base text-slate-800">اختر الإجابة لتظهر لك النتيجة والشرح فوراً!</div>
+            <div class="bg-slate-100 px-5 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-3 border-t border-slate-200">
+                <div id="quiz-score-badge" class="font-extrabold text-sm sm:text-base text-slate-800">اختر الإجابة لتظهر لك النتيجة والشرح فوراً!</div>
                 <div class="flex gap-3">
-                    <button onclick="openQuizModal(activeQuizId)" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl shadow cursor-pointer text-sm">
+                    <button onclick="openQuizModal(activeQuizId)" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 sm:px-5 py-2.5 rounded-xl shadow cursor-pointer text-sm">
                         <i class="fa-solid fa-rotate-right ml-1"></i> إعادة الاختبار
                     </button>
-                    <button onclick="closeQuizModal()" class="bg-slate-300 hover:bg-slate-400 text-slate-900 font-bold px-5 py-2.5 rounded-xl cursor-pointer text-sm">إغلاق</button>
+                    <button onclick="closeQuizModal()" class="bg-slate-300 hover:bg-slate-400 text-slate-900 font-bold px-4 sm:px-5 py-2.5 rounded-xl cursor-pointer text-sm">إغلاق</button>
                 </div>
             </div>
         </div>
@@ -1429,6 +1543,25 @@
 
     <!-- ==================== البرمجة التفاعلية (JavaScript) ==================== -->
     <script>
+        // التحكم في قائمة البرقر للجوال
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobile-drawer');
+            const icon = document.getElementById('mobile-menu-icon');
+            drawer.classList.toggle('hidden');
+            if (drawer.classList.contains('hidden')) {
+                icon.className = 'fa-solid fa-bars';
+            } else {
+                icon.className = 'fa-solid fa-xmark';
+            }
+        }
+
+        function closeMobileMenu() {
+            const drawer = document.getElementById('mobile-drawer');
+            const icon = document.getElementById('mobile-menu-icon');
+            drawer.classList.add('hidden');
+            icon.className = 'fa-solid fa-bars';
+        }
+
         // نظام مؤثرات صوتية خفيفة للتغذية الراجعة الفورية (بدون روابط خارجية)
         function playFeedbackSound(isCorrect) {
             try {
@@ -1473,13 +1606,25 @@
             // إظهار الدرس المطلوب
             document.getElementById(`lesson-${num}`).classList.add('active');
 
-            // تحديث أزرار التنقل
+            // تحديث أزرار التنقل (سطح المكتب + قائمة البرقر للجوال)
             for (let i = 1; i <= 5; i++) {
                 const btn = document.getElementById(`nav-btn-${i}`);
-                btn.className = 'nav-pill flex items-center gap-2.5 px-4 py-2.5 rounded-xl font-bold text-base transition cursor-pointer text-slate-300 hover:bg-white/10';
+                if (btn) {
+                    btn.className = 'nav-pill flex items-center gap-2.5 px-4 py-2.5 rounded-xl font-bold text-base transition cursor-pointer text-slate-300 hover:bg-white/10';
+                }
+                const mobBtn = document.getElementById(`mob-nav-btn-${i}`);
+                if (mobBtn) {
+                    mobBtn.className = 'mob-nav-pill flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm transition cursor-pointer bg-white/5 text-slate-200 hover:bg-white/10';
+                }
             }
             const activeBtn = document.getElementById(`nav-btn-${num}`);
-            activeBtn.className = `nav-pill active flex items-center gap-2.5 px-4 py-2.5 rounded-xl font-bold text-base transition cursor-pointer ${lessonColors[num]} text-white shadow-lg`;
+            if (activeBtn) {
+                activeBtn.className = `nav-pill active flex items-center gap-2.5 px-4 py-2.5 rounded-xl font-bold text-base transition cursor-pointer ${lessonColors[num]} text-white shadow-lg`;
+            }
+            const activeMobBtn = document.getElementById(`mob-nav-btn-${num}`);
+            if (activeMobBtn) {
+                activeMobBtn.className = `mob-nav-pill flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm transition cursor-pointer ${lessonColors[num]} text-white shadow`;
+            }
 
             // تحديث التقدم
             visitedLessons.add(num);
@@ -1667,10 +1812,10 @@
                 const card = document.getElementById(`fe-step-${i}`);
                 const badge = card.querySelector('div');
                 if (i === currentFeStep) {
-                    card.className = 'fe-card border-2 border-teal-600 bg-teal-50 rounded-2xl p-4 transition-all scale-105 shadow-md';
+                    card.className = 'fe-card border-2 border-teal-600 bg-teal-50 rounded-2xl p-4 transition-all scale-105 shadow-md' + (i === 5 ? ' sm:col-span-2 lg:col-span-1' : '');
                     badge.className = 'w-8 h-8 rounded-full bg-teal-600 text-white font-black flex items-center justify-center text-sm mb-2';
                 } else {
-                    card.className = 'fe-card border-2 border-slate-200 bg-slate-50 rounded-2xl p-4 opacity-60 transition-all';
+                    card.className = 'fe-card border-2 border-slate-200 bg-slate-50 rounded-2xl p-4 opacity-60 transition-all' + (i === 5 ? ' sm:col-span-2 lg:col-span-1' : '');
                     badge.className = 'w-8 h-8 rounded-full bg-slate-400 text-white font-black flex items-center justify-center text-sm mb-2';
                 }
             }
@@ -1741,9 +1886,10 @@
             };
             states.forEach(s => {
                 const box = document.getElementById(`proc-${s}`);
+                const extraCol = s === 'terminated' ? ' col-span-2 sm:col-span-1' : '';
                 box.className = s === state
-                    ? 'proc-box border-2 border-emerald-500 rounded-xl p-3 bg-emerald-50 shadow-md scale-105 transition'
-                    : 'proc-box border-2 border-slate-200 rounded-xl p-3 bg-slate-50 opacity-70 transition';
+                    ? 'proc-box border-2 border-emerald-500 rounded-xl p-3 bg-emerald-50 shadow-md scale-105 transition' + extraCol
+                    : 'proc-box border-2 border-slate-200 rounded-xl p-3 bg-slate-50 opacity-70 transition' + extraCol;
             });
             document.getElementById('proc-status-msg').innerText = msgs[state];
         }
@@ -1910,22 +2056,22 @@
             const quiz = quizzesData[lessonId];
             document.getElementById('quiz-modal-title').innerText = quiz.title;
             document.getElementById('quiz-score-badge').innerText = `النتيجة: 0 من ${quiz.questions.length} — اختر الإجابة لتظهر التغذية الراجعة فوراً`;
-            document.getElementById('quiz-score-badge').className = 'font-extrabold text-base text-slate-800';
+            document.getElementById('quiz-score-badge').className = 'font-extrabold text-sm sm:text-base text-slate-800';
 
             const body = document.getElementById('quiz-body');
             body.innerHTML = quiz.questions.map((item, qIdx) => `
-                <div class="bg-slate-50 border-2 border-slate-200 rounded-2xl p-5 transition-all" id="q-box-${qIdx}">
-                    <p class="font-extrabold text-slate-900 text-lg mb-3.5">${qIdx + 1}. ${item.q}</p>
+                <div class="bg-slate-50 border-2 border-slate-200 rounded-2xl p-4 sm:p-5 transition-all" id="q-box-${qIdx}">
+                    <p class="font-extrabold text-slate-900 text-base sm:text-lg mb-3.5">${qIdx + 1}. ${item.q}</p>
                     <div class="space-y-2.5" id="q-opts-${qIdx}">
                         ${item.opts.map((opt, oIdx) => `
-                            <button type="button" onclick="handleInstantAnswer(${qIdx}, ${oIdx})" id="opt-btn-${qIdx}-${oIdx}" class="w-full text-right flex items-center gap-3 bg-white border-2 border-slate-300 hover:border-blue-500 hover:bg-blue-50/50 p-3.5 rounded-xl cursor-pointer text-base font-bold text-slate-800 transition">
+                            <button type="button" onclick="handleInstantAnswer(${qIdx}, ${oIdx})" id="opt-btn-${qIdx}-${oIdx}" class="w-full text-right flex items-center gap-3 bg-white border-2 border-slate-300 hover:border-blue-500 hover:bg-blue-50/50 p-3.5 rounded-xl cursor-pointer text-sm sm:text-base font-bold text-slate-800 transition">
                                 <span class="w-8 h-8 rounded-lg bg-slate-100 border border-slate-300 flex items-center justify-center text-sm font-black shrink-0">${['أ', 'ب', 'ج'][oIdx]}</span>
                                 <span>${opt}</span>
                             </button>
                         `).join('')}
                     </div>
                     <!-- منطقة التغذية الراجعة الفورية لكل سؤال -->
-                    <div id="q-feedback-${qIdx}" class="hidden mt-4 p-4 rounded-xl text-base leading-relaxed"></div>
+                    <div id="q-feedback-${qIdx}" class="hidden mt-4 p-4 rounded-xl text-sm sm:text-base leading-relaxed"></div>
                 </div>
             `).join('');
 
@@ -1956,10 +2102,10 @@
                 btn.classList.add('cursor-default');
 
                 if (oIdx === item.ans) {
-                    btn.className = 'w-full text-right flex items-center gap-3 bg-emerald-100 border-2 border-emerald-600 p-3.5 rounded-xl text-base font-extrabold text-emerald-950';
+                    btn.className = 'w-full text-right flex items-center gap-3 bg-emerald-100 border-2 border-emerald-600 p-3.5 rounded-xl text-sm sm:text-base font-extrabold text-emerald-950';
                     btn.querySelector('span').innerHTML = '<i class="fa-solid fa-check text-emerald-700"></i>';
                 } else if (oIdx === selectedIdx && !isCorrect) {
-                    btn.className = 'w-full text-right flex items-center gap-3 bg-rose-100 border-2 border-rose-500 p-3.5 rounded-xl text-base font-extrabold text-rose-950';
+                    btn.className = 'w-full text-right flex items-center gap-3 bg-rose-100 border-2 border-rose-500 p-3.5 rounded-xl text-sm sm:text-base font-extrabold text-rose-950';
                     btn.querySelector('span').innerHTML = '<i class="fa-solid fa-xmark text-rose-700"></i>';
                 } else {
                     btn.classList.add('opacity-55');
@@ -1969,24 +2115,24 @@
             // إظهار التغذية الراجعة الفورية أسفل السؤال مباشرة
             feedbackEl.classList.remove('hidden');
             if (isCorrect) {
-                box.className = 'bg-emerald-50/70 border-2 border-emerald-500 rounded-2xl p-5 transition-all';
+                box.className = 'bg-emerald-50/70 border-2 border-emerald-500 rounded-2xl p-4 sm:p-5 transition-all';
                 feedbackEl.className = 'mt-4 p-4 rounded-xl bg-emerald-600 text-white shadow-md';
                 feedbackEl.innerHTML = `
-                    <div class="font-black text-lg flex items-center gap-2 mb-1">
+                    <div class="font-black text-base sm:text-lg flex items-center gap-2 mb-1">
                         <i class="fa-solid fa-circle-check text-gold-400 text-xl"></i>
                         <span>أحسنت! إجابة صحيحة وموفقة</span>
                     </div>
-                    <p class="text-sm text-emerald-50 font-medium">${item.exp}</p>
+                    <p class="text-xs sm:text-sm text-emerald-50 font-medium">${item.exp}</p>
                 `;
             } else {
-                box.className = 'bg-rose-50/70 border-2 border-rose-500 rounded-2xl p-5 transition-all';
+                box.className = 'bg-rose-50/70 border-2 border-rose-500 rounded-2xl p-4 sm:p-5 transition-all';
                 feedbackEl.className = 'mt-4 p-4 rounded-xl bg-rose-600 text-white shadow-md';
                 feedbackEl.innerHTML = `
-                    <div class="font-black text-lg flex items-center gap-2 mb-1">
+                    <div class="font-black text-base sm:text-lg flex items-center gap-2 mb-1">
                         <i class="fa-solid fa-circle-xmark text-amber-300 text-xl"></i>
                         <span>إجابة غير صحيحة — الإجابة الصحيحة هي: (${item.opts[item.ans]})</span>
                     </div>
-                    <p class="text-sm text-rose-50 font-medium">${item.exp}</p>
+                    <p class="text-xs sm:text-sm text-rose-50 font-medium">${item.exp}</p>
                 `;
             }
 
@@ -1997,7 +2143,7 @@
 
             if (totalAnswered === quiz.questions.length) {
                 badge.innerHTML = `<i class="fa-solid fa-star text-gold-500 ml-1"></i> اكتمل الاختبار! نتيجتك النهائية: ${correctCount} من ${quiz.questions.length} ${correctCount === quiz.questions.length ? '— ممتاز يا بطل!' : ''}`;
-                badge.className = correctCount === quiz.questions.length ? 'font-extrabold text-base text-emerald-700' : 'font-extrabold text-base text-blue-800';
+                badge.className = correctCount === quiz.questions.length ? 'font-extrabold text-sm sm:text-base text-emerald-700' : 'font-extrabold text-sm sm:text-base text-blue-800';
             } else {
                 badge.innerHTML = `تمت الإجابة على ${totalAnswered} من ${quiz.questions.length} | الإجابات الصحيحة: <span class="text-emerald-700">${correctCount}</span>`;
             }
